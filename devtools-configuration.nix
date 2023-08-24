@@ -2,6 +2,7 @@
 
 {
   # Development pkgs
+  virtualisation.lxd.enable = true;
   environment.systemPackages = with pkgs; [
     git
     gh
@@ -9,6 +10,7 @@
     vscode
     texlive.combined.scheme-full
     nixfmt
+    poetry
     (python3.withPackages (ps: [
       ps.numpy
       ps.matplotlib

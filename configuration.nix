@@ -10,13 +10,31 @@
       ./hardware-configuration.nix
       ./devtools-configuration.nix
       ./terminal-configuration.nix
+      <home-manager/nixos>
     ];
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    useOSProber = true;
+    devices = ["nodev"];
+    extraEntries = ''
+      menuentry "WindOwOs" {
+        search --set=win --fs-uuid 584A79304A790C4E
+        chainloader ($win)+1
+      }
+    '';
+ 
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  # For flashing keyoard
+  services.udev.packages = [ pkgs.qmk-udev-rules ];
+
+  networking.hostName = "Discovery"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -90,15 +108,23 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
+      qmk
+      qutebrowser-q6
     #  thunderbird
     ];
   };
+
+  # Configure home manager users
+
+  #home-manager.users.alia = { pkgs, ...}:
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+  programs.steam.enable = true;
 
   system.stateVersion = "23.05"; 
 

@@ -7,5 +7,6 @@
     curl
     neofetch
     sl
+    htop
   ];
 }
