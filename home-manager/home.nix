@@ -35,6 +35,8 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     pkgs.alacritty
+    pkgs.arandr
+    pkgs.anki
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
