@@ -5,6 +5,7 @@
   # manage.
   home.username = "alia";
   home.homeDirectory = "/home/alia";
+  nixpkgs.config.allowUnfree = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -37,6 +38,8 @@
     pkgs.alacritty
     pkgs.arandr
     pkgs.anki
+    pkgs.minecraft
+    pksg.discord
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
