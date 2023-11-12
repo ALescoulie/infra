@@ -61,6 +61,14 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+  
+i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+    ];
+};
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -69,6 +77,8 @@
 
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.deepin.enable = true;
+  services.xserver.windowManager.i3.enable = true;
+  services.picom.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -109,7 +119,7 @@
     packages = with pkgs; [
       firefox
       qmk
-      qutebrowser-q6
+      qutebrowser-qt6
     #  thunderbird
     ];
   };
@@ -127,5 +137,10 @@
   programs.steam.enable = true;
 
   system.stateVersion = "23.05"; 
+
+  # Enable flakes
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
 }
