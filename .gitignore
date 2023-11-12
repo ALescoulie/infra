@@ -3,7 +3,7 @@ Code/*
 dconf/*
 discord/*
 deepin/*
-enviornment.d/*
+environment.d/*
 evolution/*
 fcitx/*
 fcitx5/*
@@ -15,3 +15,4 @@ paradox-launcher-v2/*
 pulse/*
 qutebrowser/*
 unity3d/*
+ghc/*

@@ -39,7 +39,11 @@
     pkgs.arandr
     pkgs.anki
     pkgs.minecraft
-    pksg.discord
+    pkgs.discord
+    pkgs.nitrogen
+    pkgs.polybar
+    pkgs.cargo
+    pkgs.prismlauncher
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -61,13 +65,26 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
   # optional for nix flakes support in home-manager 21.11, not required in home-manager unstable or 22.05
+   
   programs.neovim = {
     enable = true;
+    defaultEditor = true;
     viAlias = true;
     vimAlias = true;
-    extraConfig = ":luafile ~/.config/nvim/init.lua";
-  };
-  
+    plugins = with pkgs.vimPlugins; [
+      nvim-tree-lua
+      nvim-autopairs
+      nvim-cmp
+      {
+        plugin = nvim-treesitter.withAllGrammars;
+        config = ''
+          packadd! nvim-treesitter
+        '';
+      }
+      nvim-ts-rainbow2
+      tokyonight-nvim
+    ];
+  }; 
 
   programs.bash.enable = true;
   # You can also manage environment variables but you will have to manually
