@@ -1,4 +1,4 @@
-{ config, lib, packages, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib; {
   
@@ -19,25 +19,6 @@ with lib; {
       vim-plug
       vim-sleuth
       tokyonight-nvim
-    ];
-    extraConfig = ''
-      source ${pkgs.vimPlugins.vim-plug}/plug.vim
-     
-      ${builtins.readFile ./init.nvim}
-    '';
-  }; 
-
-  programs.neovim = {
-    coc = {
-      enable = true;
-      settings = builtins/fromJSON (builtins/reafFile ./coc-settings.json);
-    };
-
-    extraConfig = ''
-      ${builtins.readFile ./ide.nvim}
-    '';
-
-    plugins = with pkgs.vimPlugsins; [
       coc-nvim
       coc-rust-analyzer
       coc-tsserver
@@ -45,15 +26,27 @@ with lib; {
       editorconfig-nvim
       goyo-vim
       limelight-vim
-      nergcommenter
+      nerdcommenter
       taglist-vim
       vim-fugitive
       vim-gitgutter
       vim-terraform
       vim-test
       vimtex
-    ]
-  };
+    ];
+
+    coc = {
+      enable = true;
+      settings = builtins/fromJSON (builtins/reafFile ./coc-settings.json);
+    };
+
+    extraConfig = ''
+      source ${pkgs.vimPlugins.vim-plug}/plug.vim
+     
+      ${builtins.readFile ./init.nvim}
+      ${builtins.readFile ./ide.nvim}
+    '';
+    };
 
   home.packages = with pkgs; [ nodejs nodePackages.npm ];
 }
