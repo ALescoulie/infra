@@ -47,7 +47,7 @@
       cursor = {
         style = {
           shape = "Beam";
-          blinking = "On"
+          blinking = "On";
         };
         blinking = "On";
         vi_mode_style = "Beam";
