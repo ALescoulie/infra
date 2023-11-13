@@ -37,7 +37,7 @@ with lib; {
 
     coc = {
       enable = true;
-      settings = builtins/fromJSON (builtins/reafFile ./coc-settings.json);
+      settings = builtins.fromJSON (builtins.readFile ./coc-settings.json);
     };
 
     extraConfig = ''
