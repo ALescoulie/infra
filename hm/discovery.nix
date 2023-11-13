@@ -11,9 +11,9 @@
 
   imports = [
     ./hm_modules/alacritty.nix
-    ./hm_modules/nvim.nix
     ./hm_modules/direnv.nix
     ./hm_modules/polybar/polybar.nix
+    ./hm_modules/nvim/nvim.nix
   ];
 
   home.packages = with pkgs; [
