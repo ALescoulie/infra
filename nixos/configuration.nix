@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
       ./devtools-configuration.nix
       ./terminal-configuration.nix
-      <home-manager/nixos>
     ];
 
   boot.supportedFilesystems = [ "ntfs" ];
