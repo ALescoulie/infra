@@ -30,8 +30,6 @@ autocmd FileType haskell,nix,yaml,json,jsonc setlocal shiftwidth=2 softtabstop=2
 " Detect indent when reading existing file
 autocmd BufRead * Sleuth
 
-" Make coding look like sniping
-set cursorline cursorcolumn
 
 " Rulers for column lengths
 highlight LongLineWarning ctermbg=yellow
