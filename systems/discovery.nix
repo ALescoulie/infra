@@ -7,9 +7,9 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./devtools-configuration.nix
-      ./terminal-configuration.nix
+      ./sys_modules/devtool-utils.nix
+      ./sys_modules/hardware-config.nix
+      ./sys_modules/terminal-utils.nix
     ];
 
   boot.supportedFilesystems = [ "ntfs" ];
