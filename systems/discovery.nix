@@ -10,6 +10,7 @@
       ./sys_modules/devtool-utils.nix
       ./sys_modules/hardware-config.nix
       ./sys_modules/terminal-utils.nix
+      ./sys_modules/open-ssh.nix
     ];
 
   boot.supportedFilesystems = [ "ntfs" ];

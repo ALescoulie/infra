@@ -10,7 +10,7 @@
   };
 
   users.users."alia".openssh.authorizedKeys.keys = [
-    "AAAAC3NzaC1lZDI1NTE5AAAAIBinAdYVrOncCzb5hQsttQIDNPbBjvW1jMBicp6AK6sZ alia.lescoulie@gmail.com"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBinAdYVrOncCzb5hQsttQIDNPbBjvW1jMBicp6AK6sZ alia.lescoulie@gmail.com"
   ];
 }
 

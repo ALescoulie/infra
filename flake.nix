@@ -12,7 +12,7 @@
       system = "x86_64-linux";
       modules = [
         home-manager.nixosModules.home-manager
-        ./system/discovery.nix
+        ./systems/discovery.nix
       ];
     };
 
