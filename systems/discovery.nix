@@ -142,5 +142,4 @@ i18n.inputMethod = {
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-
 }
