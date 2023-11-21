@@ -14,6 +14,7 @@
     ./hm_modules/direnv.nix
     ./hm_modules/polybar/polybar.nix
     ./hm_modules/nvim/nvim.nix
+    ./hm_modules/zsh/zsh.nix
   ];
 
   home.packages = with pkgs; [
@@ -26,7 +27,5 @@
     cargo
     prismlauncher
   ];
-
-  programs.bash.enable = true;
 
 }
