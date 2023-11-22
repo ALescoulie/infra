@@ -20,6 +20,11 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [ ./hm/discovery.nix ];
     };
+
+    homeConfigurations."alia@articfops" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+      modules = [ ./hm/nix-dawrin.nix ]; 
+    };
   };
 }
 
