@@ -23,7 +23,7 @@
 
     homeConfigurations."alia@articfops" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-darwin;
-      modules = [ ./hm/nix-dawrin.nix ]; 
+      modules = [ ./hm/nix-darwin.nix ]; 
     };
   };
 }
