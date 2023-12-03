@@ -48,6 +48,6 @@ with lib; {
     '';
     };
 
-  home.packages = with pkgs; [ nodejs nodePackages.npm ];
+  home.packages = with pkgs; [ nodejs nodePackages.npm fortran-language-server ];
 }
 
