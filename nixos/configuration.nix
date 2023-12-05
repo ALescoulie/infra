@@ -111,16 +111,32 @@ i18n.inputMethod = {
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.alia = {
-    isNormalUser = true;
-    description = "Alia Lescoulie";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      qmk
-      qutebrowser-qt6
-    #  thunderbird
-    ];
+  users.users = {
+    alia = {
+      isNormalUser = true;
+      description = "Alia Lescoulie";
+      extraGroups = [ "networkmanager" "wheel" ];
+      packages = with pkgs; [
+        firefox
+        qmk
+        qutebrowser-qt6
+      #  thunderbird
+      ];
+    };
+
+    astrid = {
+      isNormalUser = true;
+      description = "Astrid Yu";
+      extraGroups = [ "networkmanager" "wheel" ];
+      packages = with pkgs; [
+        firefox
+      #  thunderbird
+      ];
+
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEl4yuE1X4IqjBqt/enMyZFZKJQLxeq34BTCNqey59aZ astrid@chungus"
+      ];
+    };
   };
 
   # Configure home manager users
