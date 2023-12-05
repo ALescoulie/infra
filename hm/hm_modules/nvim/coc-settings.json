@@ -34,6 +34,11 @@
         }
       }
     },
+    "fortran": {
+      "command": "fortls",
+      "filetypes": ["fortran", "f90"],
+      "rootPatterns": [".fortls", ".git/"]
+    },
     "haskell": {
       "command": "haskell-language-server",
       "args": ["--lsp"],
