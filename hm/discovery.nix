@@ -20,6 +20,7 @@
   home.packages = with pkgs; [
     arandr
     anki
+    calibre
     minecraft
     discord
     nitrogen
