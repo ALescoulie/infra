@@ -33,6 +33,7 @@ with lib; {
       vim-terraform
       vim-test
       vimtex
+      neorg
     ];
 
     coc = {
@@ -45,6 +46,7 @@ with lib; {
      
       ${builtins.readFile ./init.nvim}
       ${builtins.readFile ./ide.nvim}
+      ${builtins.readFile ./init.lua}
     '';
     };
 
