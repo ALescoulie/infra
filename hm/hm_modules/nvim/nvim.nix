@@ -33,7 +33,6 @@ with lib; {
       vim-terraform
       vim-test
       vimtex
-      neorg
     ];
 
     coc = {
