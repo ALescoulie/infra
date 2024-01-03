@@ -10,6 +10,7 @@
     vscode
     texlive.combined.scheme-full
     nixfmt
+    docker
     poetry
     (python3.withPackages (ps: [
       ps.numpy

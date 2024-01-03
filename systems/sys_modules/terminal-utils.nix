@@ -9,6 +9,7 @@
     neofetch
     sl
     htop
+    find
   ];
 }
 

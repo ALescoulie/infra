@@ -1,23 +1,22 @@
-# Taken from github.com/hlissner/dotfiles
+# Based on config from github.com/hlissner/dotfiles
 
 { config, lib, pkgs, inputs, ... }:
 
 with lib;
-with lib.my;
 let cfg = config.modules.editors.emacs;
     configDir = config.dotfiles.configDir;
 in {
   options.modules.editors.emacs = {
-    enable = mkBoolOpt false;
+    enable = true;
     doom = rec {
-      enable = mkBoolOpt false;
-      forgeUrl = mkOpt types.str "https://github.com";
-      repoUrl = mkOpt types.str "${forgeUrl}/doomemacs/doomemacs";
+      enable = true;
+      forgeUrl = "https://github.com";
+      repoUrl = "${forgeUrl}/doomemacs/doomemacs";
       configRepoUrl = mkOpt types.str "${forgeUrl}/hlissner/doom-emacs-private";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = cfg.enable {
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
 
     user.packages = with pkgs; [
@@ -52,10 +51,6 @@ in {
       beancount
       org
     ];
-
-    env.PATH = [ "$XDG_CONFIG_HOME/emacs/bin" ];
-
-    modules.shell.zsh.rcFiles = [ "${configDir}/emacs/aliases.zsh" ];
 
     fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
 
