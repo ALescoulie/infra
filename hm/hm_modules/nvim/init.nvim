@@ -20,6 +20,10 @@ autocmd BufNewFile,BufRead *.nvim set syntax=vim
 autocmd BufNewFile,BufRead flake.lock set syntax=json
 autocmd BufNewFile,BufRead coc-settings.json set syntax=jsonc
 
+" Set colorscheme and transparency
+colorscheme purify
+hi Normal guibg=NONE ctermbg=NONE
+
 " Indentation settings and other stuff
 set autoindent smartindent ignorecase smartcase number splitbelow
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -30,6 +34,9 @@ autocmd FileType haskell,nix,yaml,json,jsonc setlocal shiftwidth=2 softtabstop=2
 " Detect indent when reading existing file
 autocmd BufRead * Sleuth
 
+" Setting the complete key to tab
+inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
+inoremap <silent><expr> <cr> "\<c-g>u\<CR>"
 
 " Rulers for column lengths
 highlight LongLineWarning ctermbg=yellow

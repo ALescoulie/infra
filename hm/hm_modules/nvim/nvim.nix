@@ -33,6 +33,7 @@ with lib; {
       vim-terraform
       vim-test
       vimtex
+      awesome-vim-colorschemes
     ];
 
     coc = {

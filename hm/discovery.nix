@@ -27,6 +27,8 @@
     polybar
     cargo
     prismlauncher
+    deluge
+    strawberry
   ];
 
 }
