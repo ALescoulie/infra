@@ -23,6 +23,7 @@ autocmd BufNewFile,BufRead coc-settings.json set syntax=jsonc
 " Set colorscheme and transparency
 colorscheme purify
 hi Normal guibg=NONE ctermbg=NONE
+highlight LineNr term=bold cterm=NONE ctermfg=white ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " Indentation settings and other stuff
 set autoindent smartindent ignorecase smartcase number splitbelow
