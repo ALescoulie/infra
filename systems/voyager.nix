@@ -7,14 +7,20 @@
 {
   imports = 
   [
-    ./sys_modules/devtools-utils.nix
-    ./sys_modules/terminal-utils/nix
+    ./sys_modules/devtool-utils.nix
+    ./sys_modules/terminal-utils.nix
   ];
 
-  let 
-    configuration = { pkgs, ... }: {
-      nix.settings.experimental-features = "nix-commands flakes"
-      
-    };
+  # Enable flakes
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
- }
+  services.nix-daemon.enable = true;
+  nixpkgs.hostPlatform = "aarch64-darwin";
+
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+}
+ 
