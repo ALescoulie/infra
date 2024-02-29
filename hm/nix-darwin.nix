@@ -22,6 +22,8 @@
     poetry
     cargo
     neofetch
+    tmux
+    iterm2
   ];
 
   programs.zsh.enable = true;

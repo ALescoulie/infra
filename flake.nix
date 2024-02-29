@@ -20,10 +20,13 @@
     darwinConfigurations.Voyager = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
-                  home-manager.darwinModules.home-manager
-                  ./systems/voyager.nix 
-                ];
+        home-manager.darwinModules.home-manager
+        ./systems/voyager.nix 
+      ];
     };
+
+    darwinPackages = self.darwinConfigurations.Voyager.pkgs;
+
 
     homeConfigurations."alia@Discovery" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
