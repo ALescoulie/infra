@@ -27,6 +27,15 @@
 
     darwinPackages = self.darwinConfigurations.Voyager.pkgs;
 
+    packages.x86_64-linux.installer-iso = self.nixosConfigurations.installer-iso.config.system.build.isoImage;
+
+    nixosConfigurations.installer-iso = (nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./system-installer/configuration.nix
+      ];
+    });
+
 
     homeConfigurations."alia@Discovery" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
