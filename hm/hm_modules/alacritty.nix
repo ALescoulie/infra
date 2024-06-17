@@ -49,11 +49,11 @@
           shape = "Beam";
           blinking = "On";
         };
-        blinking = "On";
         vi_mode_style = "Beam";
-        blilnk_interval = 750;
-        blink_timeout = 5;
         unfocused_hollow = true;
+      };
+      font = {
+        size = 8.0;
       };
     };
   };
