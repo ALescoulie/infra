@@ -1,11 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
-  wayland.windowManager.hyprland = {
-    settings = {
-      bind = [
-        "bind = $mainMod, 28, exec, alacritty"
-      ];
-    };
+  wayland.windowManager.hyprland.settings = {
+    "$mod" = "SUPER";
+    bind = [
+      "$mainMod, 28, exec, alacritty"
+    ];
   };   
 }
