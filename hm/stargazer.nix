@@ -19,6 +19,7 @@
     ./hm_modules/zsh/zsh.nix
     ./hm_modules/tmux.nix
     ./hm_modules/hypr.nix
+    ./hm_modules/waybar/waybar.nix
   ];
 
   home.packages = with pkgs; [
@@ -26,12 +27,12 @@
     anki
     calibre
     discord
-    nitrogen
     polybar
     cargo
     prismlauncher
     deluge
     strawberry
+    zathura
   ];
 
 

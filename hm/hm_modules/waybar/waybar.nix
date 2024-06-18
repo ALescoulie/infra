@@ -8,42 +8,46 @@
     style = ''
        ${builtins.readFile ./styles.css}
 
-      window#waybar {
-        background: transparent;
-        border-bottom: none;
-      }
 
       * {
-        ${if config.hostId == "Stargazer" then ''
-        font-size: 18px;
-      '' else ''
-
-        ''}
-      }
+          border: none;
+          border-radius: 0px;
+          font-family: Roboto, Helvetica, Arial, sans-serif;
+          min-height: 0;
+          font-size: 12px;
+        }
     '';
 
-    settings [{
+    settings = [{
       layer = "top";
-      height = 35;
+      height = 20;
       position = "top";
-      margin-top = 5;
-      margin-bottom = 10;
-      
-      modules-center = [
+      margin-top = 2;
+      margin-bottom = 2;
+
+      modules-left = [
         "custom/launcher"
+        "custom/firefox"
+        "custom/term"
+        "custom/file-manager"
+        "custom/doc-viewer"
+        "custom/music"
+        "custom/torrent"
+      ];
+
+      modules-center = [
         "hyprland/workspaces"
+      ];
+
+      modules-right = [
         "idle_inhibitor"
         "pulseaudio"
         "network"
         "cpu"
         "memory"
         "temperature"
-        "keyboard-state"
-        "hyprland/language"
-      ]
-      ++ 
-      (if config.hostId == "Stargazer" then [ "battery" "battery#bat2" ] else [ ])
-      ++ [
+        "battery"
+        "battery#bat2"
         "tray"
         "clock"
         "custom/power"
@@ -75,13 +79,13 @@
         format = "{icon}";
         format-icons = {
           activated =  "";
-          deactivated = ""
+          deactivated = "";
         };
       };
 
       tray = {
-        icon-size = 20;
-        spacing = 10;
+        icon-size = 15;
+        spacing = 5;
       };
 
       clock = {
@@ -99,9 +103,8 @@
       };
 
       temperature = {
-        critical-threshold = 80;
         format = "{temperatureC}°C {icon}";
-        format-icons = [ "" "" "" ];
+        format-icons = [ "" ];
       };
 
       battery = {
@@ -115,7 +118,7 @@
         format-charging = "{capacity}% ";
         format-plugged = "{capacity}% ";
         format-alt = "{time} {icon}";
-        format-icons = ["", "", "", "", ""];
+        format-icons = [ ""  "" "" "" "" ];
       };
 
       "battery#bat2" = {
@@ -123,31 +126,31 @@
       };
 
       network = {
-        interface = "wlp2*", // (Optional) To force the use of this interface
-        format-wifi = "{essid} ({signalStrength}%) ";
-        format-ethernet = "Connected  ";
-        tooltip-format = "{ifname} via {gwaddr} ";
+        #interface = "wlp2*"; #(Optional) To force the use of this interface
+        format-wifi = "";
+        format-ethernet = "";
+        tooltip-format = "{essid} ({signalStrength}%) {ifname} via {gwaddr} ";
         format-linked = "{ifname} (No IP) ";
-        format-disconnected = "Disconnected ⚠";
+        format-disconnected = "⚠";
         format-alt = "{ifname}: {ipaddr}/{cidr}";
       };
 
       pulseaudio = {
         #"scroll-step" = 1, // %, can be a float
-        format = "{volume}% {icon}",
-        format-bluetooth = "{volume}% {icon}",
-        format-bluetooth-muted = "{icon} {format_source}",
-        format-muted = "{format_source}",
-        format-source = "",
-        format-source-muted = "",
+        format = "{icon}";
+        format-bluetooth = "{icon}";
+        format-bluetooth-muted = "{icon}";
+        format-muted = "";
+        format-source = "󰖁";
+        format-source-muted = "";
         format-icons = {
-          headphone = "",
-          hands-free = "",
-          headset = "",
-          phone = "",
-          portable = "",
-          car = "",
-          default = ["", "", ""]
+          headphone = "";
+          hands-free = "";
+          headset = "";
+          phone = "";
+          portable = "";
+          car = "";
+          default = [ "󰸈" "󰕾" "󰕾" ];
         };
         on-click = "pavucontrol";
       };
@@ -158,12 +161,42 @@
         on-click-right = "killall fuzzel";
       };
 
-      "custom/power" = {
-        format = " ",
-        on-click = "bash ${builtins.toString ./fuzzel-powermenu.sh}";
-        on-click-right = "killall fuzzel"
+      "custom/term" = {
+        format = "";
+        on-click = "alacritty";
       };
 
+      "custom/firefox" = {
+        format = "󰈹";
+        on-click = "firefox";
+      };
 
-  }
+      "custom/file-manager" = {
+        format = "";
+        on-click = "dolphin";
+      };
+
+      "custom/doc-viewer" = {
+        format = "󰧮";
+        on-click = "zathura";
+      };
+
+      "custom/music" = {
+        format = "󰽰";
+        on-click = "strawberry";
+      };
+
+      "custom/torrent" = {
+        format = "󰨈";
+        on-click = "deluge";
+      };
+        
+      "custom/power" = {
+        format = "󰐥";
+        on-click = "bash ${builtins.toString ./fuzzel-powermenu.sh}";
+        on-click-right = "killall fuzzel";
+      };
+    }];
+  };
+}
 

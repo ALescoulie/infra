@@ -4,7 +4,28 @@
   home.packages = with pkgs; [
     dolphin
     fuzzel
+    mako
+    hyprpaper
+    waybar
+    killall
+    pavucontrol
   ];
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      ipc = "off";
+      splash = false;
+      preload = [
+        (builtins.toString ./wallpapers/jw_wallpaper.png)
+      ];
+
+      wallpaper = [
+        ",${builtins.toString ./wallpapers/jw_wallpaper.png}"
+      ];
+    };
+  };
+
 
   wayland.windowManager.hyprland.extraConfig = ''
 # This is an example Hyprland config file.
@@ -24,7 +45,7 @@
 ################
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor=,preferred,auto,auto
+      monitor=,preferred,auto,1.5
 
 
 ###################
@@ -49,6 +70,9 @@
 # exec-once = $terminal
 # exec-once = nm-applet &
 # exec-once = waybar & hyprpaper & firefox
+exec-once = mako
+exec-once = hyprpaper 
+    
 
 
 #############################
@@ -70,7 +94,7 @@
 # https://wiki.hyprland.org/Configuring/Variables/#general
       general { 
           gaps_in = 5
-          gaps_out = 20
+          gaps_out = 10
 
           border_size = 2
 
@@ -133,14 +157,11 @@
       }
 
 # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-      master {
-          new_status = master
-      }
 
 # https://wiki.hyprland.org/Configuring/Variables/#misc
       misc { 
           force_default_wallpaper = -1 # Set to 0 or 1 to disable the anime mascot wallpapers
-          disable_hyprland_logo = false # If true disables the random hyprland logo / anime girl background. :(
+          disable_hyprland_logo = true # If true disables the random hyprland logo / anime girl background. :(
       }
 
 
@@ -187,7 +208,7 @@
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = $mainMod, code:24, exec, $terminal
-      bind = $mainMod, Q, killactive,
+      bind = $mainMod SHIFT, Q, killactive,
       bind = $mainMod SHIFT, E, exit,
       bind = $mainMod, E, exec, $fileManager
       bind = $mainMod, V, togglefloating,
