@@ -6,6 +6,8 @@
     fuzzel
     mako
     hyprpaper
+    waybar
+    killall
   ];
 
   services.hyprpaper = {
@@ -42,7 +44,7 @@
 ################
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor=,preferred,auto,1.5
+      monitor=eDP0,1080x1920@60,0x0,1.5
 
 
 ###################
@@ -69,8 +71,6 @@
 # exec-once = waybar & hyprpaper & firefox
 exec-once = mako
 exec-once = hyprpaper
-    
-
 
 #############################
 ### ENVIRONMENT VARIABLES ###
@@ -205,7 +205,7 @@ exec-once = hyprpaper
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = $mainMod, code:24, exec, $terminal
-      bind = $mainMod, Q, killactive,
+      bind = $mainMod SHIFT, Q, killactive,
       bind = $mainMod SHIFT, E, exit,
       bind = $mainMod, E, exec, $fileManager
       bind = $mainMod, V, togglefloating,
