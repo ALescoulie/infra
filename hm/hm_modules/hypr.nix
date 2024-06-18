@@ -6,9 +6,6 @@
     fuzzel
     mako
     hyprpaper
-    waybar
-    killall
-    pavucontrol
   ];
 
   services.hyprpaper = {
@@ -71,7 +68,7 @@
 # exec-once = nm-applet &
 # exec-once = waybar & hyprpaper & firefox
 exec-once = mako
-exec-once = hyprpaper 
+exec-once = hyprpaper
     
 
 
@@ -99,7 +96,7 @@ exec-once = hyprpaper
           border_size = 2
 
           # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-          col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+          col.active_border = rgb(2BD2FF) 
           col.inactive_border = rgba(595959aa)
 
           # Set to true enable resizing windows by clicking and dragging on borders and gaps
@@ -113,16 +110,16 @@ exec-once = hyprpaper
 
 # https://wiki.hyprland.org/Configuring/Variables/#decoration
       decoration {
-          rounding = 10
+          rounding = 5
 
           # Change transparency of focused and unfocused windows
           active_opacity = 1.0
           inactive_opacity = 1.0
 
           drop_shadow = true
-          shadow_range = 4
-          shadow_render_power = 3
-          col.shadow = rgba(1a1a1aee)
+          shadow_range = 5
+          shadow_render_power = 2
+          col.shadow = rgb(FA8BFF)
 
           # https://wiki.hyprland.org/Configuring/Variables/#blur
           blur {
@@ -208,7 +205,7 @@ exec-once = hyprpaper
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = $mainMod, code:24, exec, $terminal
-      bind = $mainMod SHIFT, Q, killactive,
+      bind = $mainMod, Q, killactive,
       bind = $mainMod SHIFT, E, exit,
       bind = $mainMod, E, exec, $fileManager
       bind = $mainMod, V, togglefloating,
