@@ -62,22 +62,21 @@
     LC_TIME = "en_US.UTF-8";
   };
   
-i18n.inputMethod = {
+  i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
     ];
-};
+  };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment
-
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.windowManager.i3.enable = true;
-  services.picom.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      sddm.enable = true;
+      defaultSession = "hyprland";
+    };
+  };
 
   programs.hyprland = {
     enable = true;
@@ -87,10 +86,6 @@ i18n.inputMethod = {
   users.users.alia.useDefaultShell = true;
   users.defaultUserShell = pkgs.zsh;
   # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
