@@ -21,6 +21,7 @@
   home.packages = with pkgs; [
     arandr
     anki
+    zotero
     calibre
     minecraft
     discord
