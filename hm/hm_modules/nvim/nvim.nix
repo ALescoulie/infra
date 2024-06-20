@@ -7,6 +7,7 @@ let
     haskell-dap
     ghci-dap
     haskell-debug-adapter
+
   ];
 
   pythonDapPlugins = [];
@@ -49,6 +50,7 @@ in
         vim-test
         vimtex
         awesome-vim-colorschemes
+        telescope-nvim
         nvim-dap
         nvim-dap-ui
       ] ++ languageDebugPlugins;
@@ -66,6 +68,6 @@ in
       '';
     };
 
-    home.packages = with pkgs; [ nodejs nodePackages.npm fortran-language-server ];
+    home.packages = with pkgs; [ nodejs nodePackages.npm fortran-language-server haskellPackages.hoogle];
   }
 
