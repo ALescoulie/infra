@@ -85,7 +85,7 @@ i18n.inputMethod = {
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
-    xkbVariant = "";
+    xkbVariant = "altgr-intl";
   };
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -138,7 +138,7 @@ i18n.inputMethod = {
 
   programs.steam.enable = true;
 
-  system.stateVersion = "23.05"; 
+  system.stateVersion = "24.05"; 
 
   # Enable flakes
   nix.extraOptions = ''
