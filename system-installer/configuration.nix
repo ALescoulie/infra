@@ -1,5 +1,4 @@
-{pkgs, modulesPath, ...}
-
+{pkgs, modulesPath, ...}:
 {
 
   imports = [
