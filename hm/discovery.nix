@@ -15,6 +15,7 @@
     ./hm_modules/polybar/polybar.nix
     ./hm_modules/nvim/nvim.nix
     ./hm_modules/zsh/zsh.nix
+    ./hm_modules/tmux.nix
   ];
 
   home.packages = with pkgs; [
