@@ -21,8 +21,7 @@
     enable = true;
     efiSupport = true;
     useOSProber = true;
-    devices = ["nodev"];
- 
+    devices = ["nodev"]; 
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -66,23 +65,41 @@ i18n.inputMethod = {
     ];
 };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment
-
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.deepin.enable = true;
-  services.xserver.windowManager.i3.enable = true;
-  services.picom.enable = true;
-
-  # Configure keymap in X11
   services.xserver = {
+    enable = true;
     layout = "us";
     xkbVariant = "altgr-intl";
+    displayManager = {
+        sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+      defaultSession = "hyprland";
+    };
+    desktopManager.plasma6.enable = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  programs.hyprland = {
+    enable = true;
+  };
+
+  # Configure keymap in X11
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+  };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -115,8 +132,7 @@ i18n.inputMethod = {
     packages = with pkgs; [
       firefox
       qmk
-      qutebrowser-qt6
-    #  thunderbird
+      egl-wayland
     ];
   };
 

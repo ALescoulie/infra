@@ -16,6 +16,8 @@
     nixosConfigurations.Discovery = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        hyprland.nixosModules.default
+        home-manager.nixosModules.home-manager
         ./systems/discovery.nix
       ];
     };
@@ -51,7 +53,11 @@
 
     homeConfigurations."alia@Discovery" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ ./hm/discovery.nix ];
+      modules = [
+        ./hm/discovery.nix 
+        hyprland.homeManagerModules.default
+        {wayland.windowManager.hyprland.enable = true;}
+      ];
     };
 
     homeConfigurations."alia@articfops" = home-manager.lib.homeManagerConfiguration {
