@@ -27,6 +27,10 @@
       source ${./p10k-config/p10k.zsh}
     '';
 
+    shellAliases = {
+      neofetch = "fastfetch";
+    };
+
     plugins = [{
       name = "powerlevel10k";
       file = "powerlevel10k.zsh-theme";

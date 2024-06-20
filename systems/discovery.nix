@@ -22,12 +22,6 @@
     efiSupport = true;
     useOSProber = true;
     devices = ["nodev"];
-    extraEntries = ''
-      menuentry "WindOwOs" {
-        search --set=win --fs-uuid 584A79304A790C4E
-        chainloader ($win)+1
-      }
-    '';
  
   };
   boot.loader.efi.canTouchEfiVariables = true;

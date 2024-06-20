@@ -4,11 +4,12 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      ./sys_modules/stargazer-hardware-config.nix
       ./sys_modules/devtool-utils.nix
-      ./sys_modules/hardware-config.nix
       ./sys_modules/terminal-utils.nix
       ./sys_modules/open-ssh.nix
       ./sys_modules/dev_machines.nix
+      ./sys_modules/virtualization.nix
     ];
 
   boot.supportedFilesystems = [ "ntfs" ];
@@ -19,14 +20,15 @@
     efiSupport = true;
     useOSProber = true;
     devices = ["nodev"];
-    extraEntries = ''
-      menuentry "WindOwOs" {
-        search --set=win --fs-uuid 584A79304A790C4E
-        chainloader ($win)+1
-      }
-    '';
- 
   };
+  
+  #nix.settings = {
+  #  substituters = ["https://hyprland.cachix.org"];
+  #  trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  #};
+
+  nixpkgs.config.allowBroken = true;
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   # For flashing keyoard
@@ -60,28 +62,32 @@
     LC_TIME = "en_US.UTF-8";
   };
   
-i18n.inputMethod = {
+  i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
     ];
-};
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment
-
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.windowManager.i3.enable = true;
-  services.picom.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
   };
+
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      sddm.enable = true;
+      defaultSession = "hyprland";
+    };
+  };
+
+  programs.hyprland = {
+    enable = true;
+  };
+
+
+  programs.ssh.startAgent = true;
+  programs.zsh.enable = true;
+  users.users.alia.useDefaultShell = true;
+  users.defaultUserShell = pkgs.zsh;
+  # Configure keymap in X11
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -105,18 +111,23 @@ i18n.inputMethod = {
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+  
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
+  services.blueman.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alia = {
     isNormalUser = true;
     description = "Alia Lescoulie";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
       firefox
       qmk
-      qutebrowser-qt6
+      spice-gtk
     #  thunderbird
-    ];
+  ];
   };
 
   # Configure home manager users
@@ -131,7 +142,7 @@ i18n.inputMethod = {
 
   programs.steam.enable = true;
 
-  system.stateVersion = "23.05"; 
+  system.stateVersion = "24.05"; 
 
   # Enable flakes
   nix.extraOptions = ''

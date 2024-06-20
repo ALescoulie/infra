@@ -16,6 +16,7 @@
       # Mouse works as expected
       set-option -g mouse on
       set -g default-terminal screen-256color
+      set -g HYPRLAND_INSTANCE_SIGNATURE = "$HYPRLAND_INSTANCE_SIGNATURE"
 
       set -g @resurrect-strategy-vim 'session'
       set -g @resurrect-strategy-nvim 'session'

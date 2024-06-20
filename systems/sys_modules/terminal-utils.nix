@@ -13,7 +13,7 @@
     tree
     wget
     curl
-    neofetch
+    fastfetch
     sl
     htop
   ];
