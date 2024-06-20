@@ -171,57 +171,10 @@ label:focus {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
     font-size: 18px;
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 20px 20px 20px 20px;
 }
 
 
-#custom-firefox{
-    background-color: #FA8BFF;
-    font-size: 18px;
-    background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    color: black;
-}
-
-
-#custom-term{
-    background-color: #FA8BFF;
-    font-size: 18px;
-    background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    color: black;
-}
-
-
-#custom-file-manager{
-    background-color: #FA8BFF;
-    font-size: 18px;
-    background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    color: black;
-}
-
-#custom-doc-viewer{
-    background-color: #FA8BFF;
-    font-size: 18px;
-    background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    color: black;
-
-}
-
-#custom-music{
-    background-color: #FA8BFF;
-    font-size: 18px;
-    background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    color: black;
-
-}
-
-
-#custom-torrent{
-    background-color: #FA8BFF;
-    background-image: linear-gradient(-45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    font-size: 18px;
-    border-radius: 0px 20px 20px 0px;
-
-}
 
 
 #temperature {

@@ -82,6 +82,8 @@
     enable = true;
   };
 
+
+  programs.ssh.startAgent = true;
   programs.zsh.enable = true;
   users.users.alia.useDefaultShell = true;
   users.defaultUserShell = pkgs.zsh;

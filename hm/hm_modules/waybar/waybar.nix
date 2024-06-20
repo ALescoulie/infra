@@ -27,12 +27,6 @@
 
       modules-left = [
         "custom/launcher"
-        "custom/firefox"
-        "custom/term"
-        "custom/file-manager"
-        "custom/doc-viewer"
-        "custom/music"
-        "custom/torrent"
       ];
 
       modules-center = [
@@ -159,36 +153,6 @@
         format = "󱄅";
         on-click = "fuzzel";
         on-click-right = "killall fuzzel";
-      };
-
-      "custom/term" = {
-        format = "";
-        on-click = "alacritty";
-      };
-
-      "custom/firefox" = {
-        format = "󰈹";
-        on-click = "firefox";
-      };
-
-      "custom/file-manager" = {
-        format = "";
-        on-click = "dolphin";
-      };
-
-      "custom/doc-viewer" = {
-        format = "󰧮";
-        on-click = "zathura";
-      };
-
-      "custom/music" = {
-        format = "󰽰";
-        on-click = "strawberry";
-      };
-
-      "custom/torrent" = {
-        format = "󰨈";
-        on-click = "deluge";
       };
         
       "custom/power" = {
