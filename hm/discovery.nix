@@ -12,7 +12,7 @@
   imports = [
     ./hm_modules/alacritty.nix
     ./hm_modules/direnv.nix
-    ./hm_modules/hypr.nix
+    ./hm_modules/hypr-nvidia.nix
     ./hm_modules/waybar/waybar.nix
     ./hm_modules/nvim/nvim.nix
     ./hm_modules/zsh/zsh.nix

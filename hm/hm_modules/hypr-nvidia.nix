@@ -44,7 +44,8 @@
 ################
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
-
+monitor=DP-1, 3840x2160@60, 1920x0, 2
+monitor=HDMI-A-1, 3840x2160@60, 0x0, 2
 
 ###################
 ### MY PROGRAMS ###
