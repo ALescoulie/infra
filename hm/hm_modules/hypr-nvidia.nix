@@ -69,8 +69,12 @@ monitor=HDMI-A-1, 3840x2160@60, 0x0, 2
 # exec-once = $terminal
 # exec-once = nm-applet &
 # exec-once = waybar & hyprpaper & firefox
-exec-once = mako
-exec-once = hyprpaper
+      exec-once = mako
+      exec-once = hyprpaper
+      exec-once = [workspace 1 silent; HDMI-A-1] firefox;
+      exec-once = [workspace 2 silent; DP-1] alacritty;
+      exec-once = [workspace 3 silent; HDMI-A-1] discord;
+
 
 #############################
 ### ENVIRONMENT VARIABLES ###
@@ -187,9 +191,6 @@ exec-once = hyprpaper
       }
 
 # https://wiki.hyprland.org/Configuring/Variables/#gestures
-      gestures {
-          workspace_swipe = true
-      }
 
 # Example per-device config
 # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more

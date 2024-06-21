@@ -101,7 +101,14 @@ i18n.inputMethod = {
   services.xserver.videoDrivers = [ "nvidia" ];
 
 
-  environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
+  environment = {
+    variables = {
+      WLR_NO_HARDWARE_CURSORS = "1";
+    };
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
