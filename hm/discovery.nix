@@ -31,6 +31,7 @@
     prismlauncher
     deluge
     strawberry
+    zathura
   ];
 
 }
