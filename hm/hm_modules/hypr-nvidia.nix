@@ -69,10 +69,11 @@ monitor=HDMI-A-1, 3840x2160@60, 0x0, 2
 # exec-once = $terminal
 # exec-once = nm-applet &
 # exec-once = waybar & hyprpaper & firefox
-      exec-once = mako
-      exec-once = hyprpaper
+      exec-once = mako &
+      exec-once = hyprpaper &
+      exec-once = waybar &
       exec-once = [workspace 1 silent; HDMI-A-1] firefox;
-      exec-once = [workspace 2 silent; DP-1] alacritty;
+      exec-once = [workspace 2 silent; DP-1] $terminal;
       exec-once = [workspace 3 silent; HDMI-A-1] discord;
 
 

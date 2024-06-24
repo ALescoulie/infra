@@ -4,7 +4,6 @@
   # Based on https://github.com/DN-debug/waybar-examples/blob/main/waybar-examples/sway/config-sway
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
     style = ''
        ${builtins.readFile ./styles.css}
 
