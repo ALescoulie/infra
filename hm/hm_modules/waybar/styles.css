@@ -21,9 +21,9 @@ window#waybar.hidden {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
     background: #FA8BFF;
-    color: black;
-    border-bottom: 3px solid black;
-
+    color: white;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #workspaces button.focused {
@@ -33,8 +33,11 @@ window#waybar.hidden {
 #workspaces button.focused:hover {
     background: #FA8BFF;
     color: white;
-    border-bottom: 3px solid black;
+}
 
+#workspaces button.active {
+    background: #FA8BFF;
+    color: white;
 }
 
 #workspaces button.urgent {
