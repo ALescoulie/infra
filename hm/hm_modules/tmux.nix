@@ -10,6 +10,7 @@
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.resurrect
+      tmuxPlugins.sidebar
     ];
 
     extraConfig = ''
@@ -23,6 +24,9 @@
 
       bind | split-window -h -c "#{pane_current_path}"
       bind - split-window -v -c "#{pane_current_path}"
+
+      set -g status-bg color141
+      set -g status-fg white
     '';
   };
 }
