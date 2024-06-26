@@ -32,6 +32,7 @@
     deluge
     strawberry
     zathura
+    praat
   ];
 
 
