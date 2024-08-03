@@ -21,9 +21,14 @@ autocmd BufNewFile,BufRead flake.lock set syntax=json
 autocmd BufNewFile,BufRead coc-settings.json set syntax=jsonc
 
 " Set colorscheme and transparency
-colorscheme purify
+let g:adwaita_dark = v:true
+let g:adwaita_disable_cursorline = v:true
+let g:adwaita_transparent = v:true
+colorscheme adwaita
+
 hi Normal guibg=NONE ctermbg=NONE
-highlight LineNr term=bold cterm=NONE ctermfg=white ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+highlight LineNr term=bold gui=NONE guifg=DarkViolet guibg=NONE
+highlight Comment guifg=LightBlue guibg=NONE
 
 " Indentation settings and other stuff
 set autoindent smartindent ignorecase smartcase number splitbelow
