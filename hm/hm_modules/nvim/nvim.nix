@@ -34,8 +34,8 @@
       vimtex
       awesome-vim-colorschemes
       telescope-nvim
-      nvim-dap
-      nvim-dap-ui
+      image-nvim
+      molten-nvim
     ];
 
     coc = {
@@ -49,6 +49,10 @@
       ${builtins.readFile ./init.nvim}
       ${builtins.readFile ./ide.nvim}
     '';
+
+    extraLuaPackages = [ pkgs.luajitPackages.magick ];
+    extraPackages = [ pkgs.imagemagick ];
+
   };
 
   home.packages = with pkgs; [ 

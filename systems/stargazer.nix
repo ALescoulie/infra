@@ -121,7 +121,7 @@
   users.users.alia = {
     isNormalUser = true;
     description = "Alia Lescoulie";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "dialout" ];
     packages = with pkgs; [
       firefox
       qmk

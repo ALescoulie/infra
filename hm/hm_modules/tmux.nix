@@ -27,6 +27,7 @@
 
       set -g status-bg color141
       set -g status-fg white
+      set -gq allow-passthrough on
     '';
   };
 }

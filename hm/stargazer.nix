@@ -19,11 +19,13 @@
     ./hm_modules/tmux.nix
     ./hm_modules/hypr.nix
     ./hm_modules/waybar/waybar.nix
+    ./hm_modules/kitty.nix
   ];
 
   home.packages = with pkgs; [
     arandr
     anki
+    arduino
     calibre
     discord
     polybar
@@ -33,6 +35,7 @@
     strawberry
     zathura
     praat
+    zotero
   ];
 
 
