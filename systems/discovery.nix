@@ -137,7 +137,7 @@ i18n.inputMethod = {
   users.users.alia = {
     isNormalUser = true;
     description = "Alia Lescoulie";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       firefox
       qmk

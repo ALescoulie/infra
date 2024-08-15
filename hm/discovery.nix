@@ -17,6 +17,7 @@
     ./hm_modules/nvim/nvim.nix
     ./hm_modules/zsh/zsh.nix
     ./hm_modules/tmux.nix
+    ./hm_modules/kitty.nix
   ];
 
   home.packages = with pkgs; [
@@ -32,6 +33,7 @@
     deluge
     strawberry
     zathura
+    sidequest
   ];
 
 }
