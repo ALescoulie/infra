@@ -13,13 +13,13 @@
           border-radius: 0px;
           font-family: Roboto, Helvetica, Arial, sans-serif;
           min-height: 0;
-          font-size: 12px;
+          font-size: 24px;
         }
     '';
 
     settings = [{
       layer = "top";
-      height = 20;
+      height = 30;
       position = "top";
       margin-top = 2;
       margin-bottom = 2;
@@ -77,7 +77,7 @@
       };
 
       tray = {
-        icon-size = 15;
+        icon-size = 20;
         spacing = 5;
       };
 
@@ -149,7 +149,7 @@
       };
 
       "custom/launcher" = {
-        format = "󱄅";
+        format = " 󱄅 ";
         on-click = "fuzzel";
         on-click-right = "killall fuzzel";
       };
