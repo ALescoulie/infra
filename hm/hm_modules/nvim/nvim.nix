@@ -36,6 +36,9 @@
       telescope-nvim
       image-nvim
       molten-nvim
+      nvim-treesitter-parsers.markdown
+      nvim-treesitter-parsers.haskell
+      nvim-treesitter-parsers.python
     ];
 
     coc = {
