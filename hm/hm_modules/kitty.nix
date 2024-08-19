@@ -5,7 +5,7 @@
     enable = true;
     theme = "Adwaita dark";
     extraConfig = ''
-      font_size 10
+      font_size 18
 
       background_opacity 0.5
     '';

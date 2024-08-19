@@ -44,8 +44,8 @@
 ################
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
-monitor=DP-1, 3840x2160@60, 1920x0, 2
-monitor=HDMI-A-1, 3840x2160@60, 0x0, 2
+monitor=DP-1, 3840x2160@60, 3840x0, 1 
+monitor=HDMI-A-1, 3840x2160@60, 0x0, 1
 
 ###################
 ### MY PROGRAMS ###
@@ -54,7 +54,7 @@ monitor=HDMI-A-1, 3840x2160@60, 0x0, 2
 # See https://wiki.hyprland.org/Configuring/Keywords/
 
 # Set programs that you use
-      $terminal = alacritty
+      $terminal = kitty
       $fileManager = dolphin
       $menu = fuzzel
 

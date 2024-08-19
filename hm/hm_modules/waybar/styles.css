@@ -14,7 +14,7 @@ window#waybar.hidden {
     background: #2BD2FF;
     background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
     color: black;
-    border-radius: 20px;
+    border-radius: 24px;
 
 }
 
@@ -75,7 +75,7 @@ window#waybar.hidden {
 
 #window,
 #workspaces {
-    margin: 0px 4px;
+    margin: 0px 10px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -165,16 +165,16 @@ label:focus {
 #custom-power{
     background-color: #FA8BFF;
     background-image: linear-gradient(-45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    font-size: 18px;
-    border-radius: 0px 20px 20px 0px;
+    font-size: 24px;
+    border-radius: 0px 50px 50px 0px;
 
 }
 
 #custom-launcher{
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    font-size: 18px;
-    border-radius: 20px 20px 20px 20px;
+    font-size: 30px;
+    border-radius: 30px 30px 30px 30px;
 }
 
 
@@ -213,7 +213,7 @@ label:focus {
 #idle_inhibitor {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 30px 0px 0px 30px;
 
 }
 
@@ -221,7 +221,7 @@ label:focus {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
     color: black;
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 30px 0px 0px 30px;
 
 }
 
