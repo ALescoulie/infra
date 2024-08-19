@@ -18,6 +18,7 @@
     ./hm_modules/zsh/zsh.nix
     ./hm_modules/tmux.nix
     ./hm_modules/kitty.nix
+    ./hm_modules/fuzzel.nix
   ];
 
   home.packages = with pkgs; [
