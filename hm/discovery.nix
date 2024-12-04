@@ -30,11 +30,14 @@
     nitrogen
     polybar
     cargo
+    zulu
     prismlauncher
     deluge
     strawberry
     zathura
     sidequest
+    ardour
+    signal-desktop
   ];
 
 }
