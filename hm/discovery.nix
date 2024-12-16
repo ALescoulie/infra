@@ -37,7 +37,7 @@
     zathura
     sidequest
     ardour
-    signal-desktop
+    bambu-studio
   ];
 
 }
