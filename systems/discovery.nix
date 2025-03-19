@@ -67,13 +67,6 @@
     fsType = "ext4";
   };
 
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
-
   services.xserver = {
     enable = true;
     layout = "us";
@@ -150,6 +143,7 @@
       firefox
       qmk
       egl-wayland
+      pavucontrol
     ];
   };
 

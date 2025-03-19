@@ -11,6 +11,7 @@
       ./sys_modules/dev_machines.nix
       ./sys_modules/virtualization.nix
       ./sys_modules/fcitx5-config.nix
+      ./sys_modules/printer-config.nix
     ];
 
   boot.supportedFilesystems = [ "ntfs" ];
