@@ -10,6 +10,7 @@
       ./sys_modules/open-ssh.nix
       ./sys_modules/dev_machines.nix
       ./sys_modules/virtualization.nix
+      ./sys_modules/fcitx5-config.nix
     ];
 
   boot.supportedFilesystems = [ "ntfs" ];
@@ -62,14 +63,6 @@
     LC_TIME = "en_US.UTF-8";
   };
   
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-    ];
-  };
-
   services.xserver = {
     enable = true;
     displayManager = {

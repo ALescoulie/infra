@@ -12,6 +12,7 @@
       ./sys_modules/terminal-utils.nix
       ./sys_modules/open-ssh.nix
       ./sys_modules/dev_machines.nix
+      ./sys_modules/fcitx5-config.nix
     ];
 
   boot.supportedFilesystems = [ "ntfs" ];
@@ -56,15 +57,6 @@
     LC_TIME = "en_US.UTF-8";
   };
   
-i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-chinese-addons
-      fcitx5-gtk
-      libsForQt5.fcitx5-qt
-    ];
-  };
-
   fileSystems."/media" = {
     device = "/dev/sda1";
     fsType = "ext4";
@@ -173,7 +165,7 @@ i18n.inputMethod = {
 
   programs.steam.enable = true;
 
-  system.stateVersion = "24.05"; 
+  system.stateVersion = "24.11"; 
 
   # Enable flakes
   nix.extraOptions = ''
