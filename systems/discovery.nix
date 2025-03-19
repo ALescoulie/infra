@@ -63,7 +63,24 @@ i18n.inputMethod = {
       fcitx5-gtk
       libsForQt5.fcitx5-qt
     ];
-};
+  };
+
+  fileSystems."/media" = {
+    device = "/dev/sda1";
+    fsType = "ext4";
+  };
+  
+  fileSystems."/games" = {
+    device = "/dev/sdb1";
+    fsType = "ext4";
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
 
   services.xserver = {
     enable = true;
