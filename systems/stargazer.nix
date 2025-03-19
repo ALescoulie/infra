@@ -76,6 +76,7 @@
       sddm.enable = true;
       defaultSession = "hyprland";
     };
+    desktopManager.plasma6.enable = true;
   };
 
   programs.hyprland = {
@@ -93,7 +94,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -142,7 +142,7 @@
 
   programs.steam.enable = true;
 
-  system.stateVersion = "24.05"; 
+  system.stateVersion = "24.11"; 
 
   # Enable flakes
   nix.extraOptions = ''
