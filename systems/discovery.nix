@@ -15,20 +15,13 @@
       ./sys_modules/fcitx5-config.nix
       ./sys_modules/printer-config.nix
       ./sys_modules/localization-config.nix
+      ./sys_modules/boot-config.nix
+      ./sys_modules/alia-config.nix
+      ./sys_modules/xserver-config.nix
     ];
 
-  boot.supportedFilesystems = [ "ntfs" ];
-
-  # Bootloader.
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    useOSProber = true;
-    devices = ["nodev"]; 
-  };
-
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  networking.networkmanager.enable = true;
+  
   # For flashing keyoard
   services.udev.packages = [ pkgs.qmk-udev-rules ];
 
@@ -39,8 +32,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   fileSystems."/media" = {
     device = "/dev/sda1";
@@ -52,19 +43,6 @@
     fsType = "ext4";
   };
 
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbVariant = "altgr-intl";
-    displayManager = {
-        sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-      defaultSession = "hyprland";
-    };
-    desktopManager.plasma6.enable = true;
-  };
 
   programs.hyprland = {
     enable = true;
@@ -96,8 +74,6 @@
     };
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   #sound.enable = true;
@@ -116,25 +92,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.alia = {
-    isNormalUser = true;
-    description = "Alia Lescoulie";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      firefox
-      qmk
-      egl-wayland
-      pavucontrol
-    ];
-  };
-
-  # Configure home manager users
-
-  #home-manager.users.alia = { pkgs, ...}:
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -151,3 +108,4 @@
     experimental-features = nix-command flakes
   '';
 }
+

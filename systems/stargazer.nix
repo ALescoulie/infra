@@ -13,26 +13,12 @@
       ./sys_modules/fcitx5-config.nix
       ./sys_modules/printer-config.nix
       ./sys_modules/localization-config.nix
+      ./sys_modules/boot-config.nix
+      ./sys_modules/alia-config.nix
+      ./sys_modules/xserver-config.nix
     ];
 
-  boot.supportedFilesystems = [ "ntfs" ];
-
-  # Bootloader.
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    useOSProber = true;
-    devices = ["nodev"];
-  };
-  
-  #nix.settings = {
-  #  substituters = ["https://hyprland.cachix.org"];
-  #  trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  #};
-
   nixpkgs.config.allowBroken = true;
-
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # For flashing keyoard
   services.udev.packages = [ pkgs.qmk-udev-rules ];
@@ -47,28 +33,16 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      sddm.enable = true;
-      defaultSession = "hyprland";
-    };
-    desktopManager.plasma6.enable = true;
-  };
 
   programs.hyprland = {
     enable = true;
   };
-
 
   programs.ssh.startAgent = true;
   programs.zsh.enable = true;
   users.users.alia.useDefaultShell = true;
   users.defaultUserShell = pkgs.zsh;
   # Configure keymap in X11
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -94,19 +68,6 @@
 
   services.blueman.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.alia = {
-    isNormalUser = true;
-    description = "Alia Lescoulie";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "dialout" ];
-    packages = with pkgs; [
-      firefox
-      qmk
-      spice-gtk
-    #  thunderbird
-  ];
-  };
-
   # Configure home manager users
 
   #home-manager.users.alia = { pkgs, ...}:
@@ -116,8 +77,6 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-
-  programs.steam.enable = true;
 
   system.stateVersion = "24.11"; 
 
