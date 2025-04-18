@@ -16,6 +16,7 @@
       ./sys_modules/xserver-config.nix
       ./sys_modules/audio-config.nix
       ./sys_modules/nixpkgs-config.nix
+      ./sys_modules/open-ssh.nix
     ];
 
   networking.networkmanager.enable = true;

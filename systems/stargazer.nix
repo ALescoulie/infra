@@ -17,6 +17,7 @@
       ./sys_modules/xserver-config.nix
       ./sys_modules/bluetooth-config.nix
       ./sys_modules/audio-config.nix
+      ./sys_modules/nixpkgs-config.nix
     ];
 
 
