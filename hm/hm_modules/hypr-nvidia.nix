@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    dolphin
+    kdePackages.dolphin
     fuzzel
     mako
     hyprpaper
