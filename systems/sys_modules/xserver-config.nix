@@ -1,17 +1,18 @@
-{pkgs, ...}
+{pkgs, ...}:
 
 {
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbVariant = "altgr-intl";
-    displayManager = {
-        sddm = {
+  services.displayManager = {
+      sddm = {
         enable = true;
         wayland.enable = true;
       };
       defaultSession = "hyprland";
     };
-    desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
+  services.xserver = {
+    enable = true;
+    xkb.layout = "us";
+    xkb.variant = "altgr-intl";
   };
 }

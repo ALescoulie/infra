@@ -8,7 +8,7 @@
     gh
     vim
     texlive.combined.scheme-full
-    nixfmt
+    nixfmt-rfc-style
     poetry
     (python3.withPackages (ps: [
       ps.numpy
