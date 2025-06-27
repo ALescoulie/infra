@@ -6,17 +6,15 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.39.1&submodules=1";
   };
   
-  outputs = { self, nixpkgs, nix-darwin, home-manager, hyprland }: {
+  outputs = { self, nixpkgs, nix-darwin, home-manager }: {
 
     
 
     nixosConfigurations.Discovery = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        hyprland.nixosModules.default
         home-manager.nixosModules.home-manager
         ./systems/discovery.nix
       ];
@@ -25,7 +23,6 @@
     nixosConfigurations.Stargazer = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        hyprland.nixosModules.default
         home-manager.nixosModules.home-manager
         ./systems/stargazer.nix
       ];
@@ -55,7 +52,6 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
         ./hm/discovery.nix 
-        hyprland.homeManagerModules.default
         {wayland.windowManager.hyprland.enable = true;}
       ];
     };
@@ -74,7 +70,6 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [ 
         ./hm/stargazer.nix 
-        hyprland.homeManagerModules.default
         {wayland.windowManager.hyprland.enable = true;}
       ];
     };
