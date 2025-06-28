@@ -14,9 +14,6 @@
   nixpkgs.config.allowUnfreePredicate = (_: true);
   home.stateVersion = "23.05";
 
-  imports = [
-    ./hm_modules/nvim/nvim.nix
-  ];
 
   home.packages = with pkgs; [
     poetry

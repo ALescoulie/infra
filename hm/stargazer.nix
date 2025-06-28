@@ -13,7 +13,6 @@
 
   imports = [
     ./hm_modules/direnv.nix
-    ./hm_modules/nvim/nvim.nix
     ./hm_modules/zsh/zsh.nix
     ./hm_modules/tmux.nix
     ./hm_modules/hypr.nix
