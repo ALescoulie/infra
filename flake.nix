@@ -3,14 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
   
   outputs = { self, nixpkgs, nix-darwin, home-manager }: {
-
-    
 
     nixosConfigurations.Discovery = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -28,7 +26,7 @@
       ];
     };
 
-    darwinConfigurations.Voyager = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."Voyager" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
         home-manager.darwinModules.home-manager
@@ -56,14 +54,10 @@
       ];
     };
 
-    homeConfigurations."alia@articfops" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-darwin;
-      modules = [ ./hm/nix-darwin.nix ]; 
-    };
     
     homeConfigurations."alia@Voyager" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-      modules = [ ./hm/nix-darwin.nix ]; 
+      modules = [ ./hm/voyager.nix ]; 
     };
 
     homeConfigurations."alia@Stargazer" = home-manager.lib.homeManagerConfiguration {
