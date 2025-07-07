@@ -6,7 +6,6 @@
   environment.systemPackages = with pkgs; [
     git
     gh
-    vim
     texlive.combined.scheme-full
     nixfmt-rfc-style
     poetry

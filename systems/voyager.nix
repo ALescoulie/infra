@@ -7,6 +7,7 @@
 {
   imports = 
   [
+    ./sys_modules/devtool-utils.nix
   ];
 
   # Enable flakes
