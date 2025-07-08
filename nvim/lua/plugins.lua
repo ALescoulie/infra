@@ -11,7 +11,13 @@ return {
     'tpope/vim-sleuth',
 
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
+
+    -- Telescope
+    { 'nvim-telescope/telescope.nvim',
+      tag = '0.1.8',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    { "nvim-tree/nvim-web-devicons", opts = {} },
     'nvim-telescope/telescope-fzy-native.nvim',
 
     -- completion

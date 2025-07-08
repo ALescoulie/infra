@@ -53,7 +53,7 @@
       ];
     };
     
-    homeConfigurations."alia@MacBookPro.queer" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."alia@MacBookPro.lan" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.aarch64-darwin;
       modules = [ ./hm/voyager.nix ]; 
     };
