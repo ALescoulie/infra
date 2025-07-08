@@ -8,7 +8,6 @@
   imports = 
   [
     ./sys_modules/devtool-utils.nix
-    ./sys_modules/terminal-utils.nix
   ];
 
   # Enable flakes
@@ -16,9 +15,8 @@
     experimental-features = nix-command flakes
   '';
 
-  services.nix-daemon.enable = true;
   nixpkgs.hostPlatform = "aarch64-darwin";
-
+  system.stateVersion = 6;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
