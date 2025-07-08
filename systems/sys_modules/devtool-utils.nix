@@ -6,7 +6,11 @@
   environment.systemPackages = with pkgs; [
     git
     gh
-    vim
+    neovim
+    nil
+    nix-doc
+    nix-index
+    nix-tree
     texlive.combined.scheme-full
     nixfmt-rfc-style
     poetry

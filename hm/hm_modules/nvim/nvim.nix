@@ -21,7 +21,6 @@
       coc-nvim
       coc-rust-analyzer
       coc-tsserver
-      coq_nvim
       editorconfig-nvim
       goyo-vim
       limelight-vim
