@@ -124,11 +124,6 @@ monitor=HDMI-A-1, 3840x2160@60, 0x0, 1
           active_opacity = 1.0
           inactive_opacity = 1.0
 
-          drop_shadow = true
-          shadow_range = 5
-          shadow_render_power = 2
-          col.shadow = rgb(FA8BFF)
-
           # https://wiki.hyprland.org/Configuring/Variables/#blur
           blur {
               enabled = true

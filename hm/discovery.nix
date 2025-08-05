@@ -7,7 +7,7 @@
   home.homeDirectory = "/home/alia";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
-  home.stateVersion = "24.11"; # Please read the comment before changing.
+  home.stateVersion = "25.05"; # Please read the comment before changing.
 
   imports = [
     ./hm_modules/direnv.nix
@@ -36,6 +36,7 @@
     sidequest
     ardour
     bambu-studio
+    ripgrep
   ];
 
 }
