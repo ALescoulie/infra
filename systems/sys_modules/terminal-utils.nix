@@ -9,7 +9,7 @@
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    nvim
+    neovim
     tmux
     tree
     wget
@@ -18,5 +18,7 @@
     sl
     htop
   ];
+
+
 }
 

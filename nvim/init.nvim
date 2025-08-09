@@ -10,15 +10,15 @@ autocmd BufNewFile,BufRead coc-settings.json set syntax=jsonc
 autocmd TermOpen * setlocal nonumber norelativenumber
 autocmd TermOpen * startinsert
 
-" Set colorscheme and transparency
-let g:adwaita_dark = v:true
-let g:adwaita_disable_cursorline = v:true
-let g:adwaita_transparent = v:true
-colorscheme adwaita
-
-hi Normal guibg=NONE ctermbg=NONE
-highlight LineNr term=bold gui=NONE guifg=DarkViolet guibg=NONE
-highlight Comment guifg=LightBlue guibg=NONE
+"" Set colorscheme and transparency
+"let g:adwaita_dark = v:true
+"let g:adwaita_disable_cursorline = v:true
+"let g:adwaita_transparent = v:true
+"colorscheme adwaita
+"
+"hi Normal guibg=NONE ctermbg=NONE
+"highlight LineNr term=bold gui=NONE guifg=DarkViolet guibg=NONE
+"highlight Comment guifg=LightBlue guibg=NONE
 
 " Indentation settings and other stuff
 set autoindent smartindent ignorecase smartcase number splitbelow
@@ -30,34 +30,12 @@ autocmd FileType haskell,nix,yaml,json,jsonc setlocal shiftwidth=2 softtabstop=2
 " Detect indent when reading existing file
 autocmd BufRead * Sleuth
 
-" Setting the complete key to tab
-inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
-inoremap <silent><expr> <cr> "\<c-g>u\<CR>"
-
 " Rulers for column lengths
 highlight LongLineWarning ctermbg=yellow
 autocmd FileType python call matchadd('LongLineWarning', '\%81v', 100)
 call matchadd('LongLineWarning', '\%121v', 100)
 
-" Enable rainbow
-let g:rainbow_active = 1
 
-" Nerdtree configs
-let g:NERDTreeHijackNetrw = 1
-func! Explorer()
-    if !exists("g:NERDTree") 
-        return
-    endif
-
-    if g:NERDTree.IsOpen()
-        :NERDTreeClose
-    elseif expand('%') != ''
-        :NERDTreeFind
-    else
-        :NERDTree
-    endif
-endfunc
-nnoremap <C-n> :call Explorer()<CR>
 
 " Run make in a split terminal
 func! MakeSplitTerm()
@@ -82,5 +60,7 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>hg <cmd>Telescope hoogle<cr>
+nnoremap <leader>ns <cmd>Telescope manix<cr>
 
 
