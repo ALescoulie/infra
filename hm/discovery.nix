@@ -29,7 +29,6 @@
     polybar
     cargo
     zulu
-    prismlauncher
     deluge
     strawberry
     zathura
@@ -38,5 +37,4 @@
     bambu-studio
     ripgrep
   ];
-
 }

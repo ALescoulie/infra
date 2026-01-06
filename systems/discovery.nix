@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./sys_modules/devtool-utils.nix
+      ./sys_modules/nvidia-config.nix
       ./sys_modules/hardware-config.nix
       ./sys_modules/terminal-utils.nix
       ./sys_modules/open-ssh.nix
@@ -17,6 +18,8 @@
       ./sys_modules/audio-config.nix
       ./sys_modules/nixpkgs-config.nix
       ./sys_modules/open-ssh.nix
+      ./sys_modules/doug-config.nix
+      ./sys_modules/prism-config.nix
     ];
 
   networking.networkmanager.enable = true;
