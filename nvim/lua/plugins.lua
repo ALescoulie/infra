@@ -47,6 +47,11 @@ return {
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
     'saadparwaiz1/cmp_luasnip',
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^6', -- Recommended
+        lazy = false, -- This plugin is already lazy
+    },
 
     -- UI
     'Xuyuanp/nerdtree-git-plugin',

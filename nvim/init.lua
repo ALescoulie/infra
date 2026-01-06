@@ -227,6 +227,8 @@ vim.lsp.config('hls', {
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
 })
 
+vim.lsp.enable('rust-analyzer')
+
 -- cmp language server protocol integration
 local cmp = require('cmp')
 
