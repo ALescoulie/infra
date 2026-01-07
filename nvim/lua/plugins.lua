@@ -33,14 +33,14 @@ return {
 
     -- completion
     {
-    	"L3MON4D3/LuaSnip",
-    	-- follow latest release.
-    	version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    	-- install jsregexp (optional!).
-    	build = "make install_jsregexp",
-        dependencies = {
-          "rafamadriz/friendly-snippets"
-        },
+      "L3MON4D3/LuaSnip",
+      -- follow latest release.
+      version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+      -- install jsregexp (optional!).
+      build = "make install_jsregexp",
+      dependencies = {
+        "rafamadriz/friendly-snippets"
+      },
     },
     --'mrcjkb/haskell-snippets.nvim',
     'neovim/nvim-lspconfig', -- may need to set version to 1.8,.0
@@ -48,9 +48,9 @@ return {
     'hrsh7th/cmp-nvim-lsp',
     'saadparwaiz1/cmp_luasnip',
     {
-        'mrcjkb/rustaceanvim',
-        version = '^6', -- Recommended
-        lazy = false, -- This plugin is already lazy
+      'mrcjkb/rustaceanvim',
+      version = '^6', -- Recommended
+      lazy = false, -- This plugin is already lazy
     },
 
     -- UI
