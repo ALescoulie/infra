@@ -140,6 +140,8 @@ require("lazy").setup({{
                 "tsx",
                 "html",
                 "css",
+                "idris",
+                "jinja",
             },
             sync_install = false,
             highlight = { enable = true },
@@ -173,19 +175,6 @@ require('neotest').setup {
   },
 }
 
--- Luasnip
-
-local ls = require("luasnip.loaders.from_vscode").lazy_load()
-
-
-
---ls.add_snippets('haskell', haskell_snippets, { key = 'haskell' })
-
-
--- Completion system
-
--- Reserve a space in the gutter
--- This will avoid an annoying layout shift in the screen
 vim.opt.signcolumn = 'yes'
 
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
@@ -227,22 +216,33 @@ vim.lsp.config('hls', {
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
 })
 
-vim.lsp.enable('rust-analyzer')
+vim.lsp.config('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false;
+      }
+    }
+  }
+})
 
+local luasnip = require("luasnip")
 -- cmp language server protocol integration
 local cmp = require('cmp')
 
 cmp.setup({
-  sources = {
-    {name = 'nvim_lsp'},
-    {name = 'luasnip'},
-  },
   snippet = {
     expand = function(args)
-      -- You need Neovim v0.10 to use vim.snippet
-      vim.snippet.expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
+
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+  },
+
   mapping = cmp.mapping.preset.insert({
  -- Jump to the next snippet placeholder
     ['<C-f>'] = cmp.mapping(function(fallback)
@@ -265,21 +265,18 @@ cmp.setup({
         -- scroll up and down the documentation window
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        -- Simple tab complete
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      local col = vim.fn.col('.') - 1
-
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
       if cmp.visible() then
-        cmp.select_next_item({behavior = 'select'})
-      elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        fallback()
+        local entry = cmp.get_selected_entry()
+        if not entry then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        end
+        cmp.confirm()
       else
-        cmp.complete()
+        fallback()
       end
-    end, {'i', 's'}),
-
-    -- Go to previous item
-    ['<S-Tab>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+    end, {"i","s",}),
   }),
   formatting = {
           -- changing the order of fields so the icon is the first

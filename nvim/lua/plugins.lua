@@ -32,21 +32,16 @@ return {
     },
 
     -- completion
-    {
-      "L3MON4D3/LuaSnip",
-      -- follow latest release.
-      version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-      -- install jsregexp (optional!).
-      build = "make install_jsregexp",
-      dependencies = {
-        "rafamadriz/friendly-snippets"
-      },
-    },
-    --'mrcjkb/haskell-snippets.nvim',
     'neovim/nvim-lspconfig', -- may need to set version to 1.8,.0
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
     'saadparwaiz1/cmp_luasnip',
+    {
+	"L3MON4D3/LuaSnip",
+	-- follow latest release.
+	version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    },
     {
       'mrcjkb/rustaceanvim',
       version = '^6', -- Recommended
