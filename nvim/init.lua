@@ -226,6 +226,7 @@ vim.lsp.config('rust_analyzer', {
   }
 })
 
+require("luasnip.loaders.from_vscode").lazy_load()
 local luasnip = require("luasnip")
 -- cmp language server protocol integration
 local cmp = require('cmp')
@@ -241,6 +242,8 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
+    { name = 'path' },
+    { name = 'nvim_lua' },
   },
 
   mapping = cmp.mapping.preset.insert({
