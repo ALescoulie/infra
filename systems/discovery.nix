@@ -73,5 +73,9 @@
     experimental-features = nix-command flakes
   '';
 
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+
+  home-manager.users.alia = import ../hm/discovery.nix;
 }
 
