@@ -39,7 +39,9 @@
     fsType = "ext4";
   };
 
-  programs.hyprland = {
+  security.polkit.enable = true;
+  
+  programs.sway = {
     enable = true;
   };
 
@@ -64,7 +66,7 @@
 
   programs.steam.enable = true;
 
-  system.stateVersion = "24.11"; 
+  system.stateVersion = "26.05"; 
 
   # Enable flakes
   nix.extraOptions = ''

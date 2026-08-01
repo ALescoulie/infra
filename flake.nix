@@ -62,7 +62,6 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
         ./hm/discovery.nix 
-        {wayland.windowManager.hyprland.enable = true;}
       ];
     };
     

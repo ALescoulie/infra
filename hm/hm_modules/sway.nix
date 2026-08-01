@@ -1,10 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  security.polkit.enable = true;
-
   wayland.windowManager.sway = {
     enable = true;
+    package = null;
     config = rec {
       modifier = "Mod4";
       # Use kitty as default terminal
@@ -13,6 +12,14 @@
         # Launch Firefox on start
         {command = "firefox";}
       ];
+      output = {
+        "DP-1" = {
+          pos = "3840 0";
+        };
+        "HDMI-A-1" = {
+          pos = "0 0";
+        };
+      };
     };
   };
 }

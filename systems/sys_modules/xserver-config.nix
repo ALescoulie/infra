@@ -6,7 +6,7 @@
         enable = true;
         wayland.enable = true;
       };
-      defaultSession = "hyprland";
+      defaultSession = "sway";
     };
   services.desktopManager.plasma6.enable = true;
 

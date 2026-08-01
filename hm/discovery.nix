@@ -7,12 +7,12 @@
   home.homeDirectory = "/home/alia";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+  home.stateVersion = "26.05"; # Please read the comment before changing.
 
   imports = [
     ./hm_modules/direnv.nix
-    ./hm_modules/hypr-nvidia.nix
     ./hm_modules/waybar/waybar.nix
+    ./hm_modules/sway.nix
     ./hm_modules/zsh/zsh.nix
     ./hm_modules/tmux.nix
     ./hm_modules/kitty.nix
