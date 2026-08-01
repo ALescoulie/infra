@@ -20,7 +20,6 @@
       ps.pandas
     ]))
     nodejs
-    nodePackages.npm
     fortran-language-server
     haskellPackages.fast-tags
     haskellPackages.haskell-language-server

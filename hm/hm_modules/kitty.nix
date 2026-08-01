@@ -3,7 +3,7 @@
 {
   programs.kitty = {
     enable = true;
-    theme = "Adwaita dark";
+    themeFile = "Adwaita dark";
     extraConfig = ''
       font_size 18
 

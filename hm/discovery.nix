@@ -29,14 +29,13 @@
     nitrogen
     polybar
     cargo
-    zulu
+    jdk25
     deluge
     ckan
     strawberry
     zathura
     sidequest
     ardour
-    bambu-studio
     ripgrep
     (openttd-jgrpp.overrideAttrs (oldAttrs: {
       src = fetchFromGitHub {

@@ -22,7 +22,7 @@
       ];
     };
 
-    initExtra = ''
+    initContent = ''
       # Powerlevel10k configuration
       source ${./p10k-config/p10k.zsh}
     '';
