@@ -56,6 +56,9 @@
       NIXOS_OZONE_WL = "1";
     };
   };
+  
+  hardware.sane.enable = true;
+  services.saned.enable = true;
 
   security.rtkit.enable = true;
 
