@@ -21,11 +21,11 @@
       output = {
         "DP-1" = {
           pos = "3840 0";
-          bg = (builtins.toString ./wallpapers/jw_wp3.jpg) + " fill";
+          bg = (builtins.toString ./wallpapers/juno-orange.jpg) + " fill";
         };
         "HDMI-A-1" = {
           pos = "0 0";
-          bg = (builtins.toString ./wallpapers/jw_wp2.png) + " fill";
+          bg = (builtins.toString ./wallpapers/juno-blue.jpg) + " fill";
         };
       };
       bars = [ ];
