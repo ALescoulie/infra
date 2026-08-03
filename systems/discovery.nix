@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -66,7 +66,18 @@
 
   programs.steam.enable = true;
 
-  system.stateVersion = "26.05"; 
+  system.stateVersion = "26.05";
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config = {
+      sway = {
+        default = lib.mkDefault [ "wlr" "gtk" ];
+      };
+    };
+};
 
   # Enable flakes
   nix.extraOptions = ''
