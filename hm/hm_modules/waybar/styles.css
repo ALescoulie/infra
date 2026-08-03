@@ -189,9 +189,9 @@
     color: @black;
 }
 
-#language {
+#custom-language {
 	background: @layout;
-	color: @black;
+	color: @white;
 }
 
 #battery {
@@ -199,9 +199,6 @@
 	color: @white;
 }
 
-#tray {
-	background: @date;
-}
 
 #clock.date {
 	background: @date;

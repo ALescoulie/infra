@@ -40,11 +40,10 @@
 		"custom/arrow5"
 		"temperature"
 		"custom/arrow4"
-		"sway/language"
+		"custom/language"
 		"custom/arrow3"
 		"custom/weather"
 		"custom/arrow2"
-		"tray"
 		"clock#date"
 		"custom/arrow1"
 		"clock#time"
@@ -58,27 +57,6 @@
         return-type = "json";
       };
 
-      "battery" = {
-        interval = 10;
-        states = {
-          warning = 30;
-          critical = 15;
-        };
-        format-time = "{H}:{M:02}";
-        format = "{icon} {capacity}% ({time})";
-        format-charging = " {capacity}% ({time})";
-        format-charging-full = " {capacity}%";
-        format-full = "{icon} {capacity}%";
-        format-alt = "{icon} {power}W";
-        format-icons = [
-          ""
-          ""
-          ""
-          ""
-          ""
-        ];
-        tooltip = false;
-      };
 
       "clock#time" = {
         interval = 10;
@@ -89,7 +67,7 @@
 
       "clock#date" = {
         interval = 20;
-        format = "{:%e %b %Y}";
+        format = "{:%Y-%m-%d}";
         tooltip = false;
         #"tooltip-format" = "{:%e %B %Y}";
       };
@@ -105,11 +83,12 @@
         };
       };
 
-      "sway/language" = {
-        format = " {}";
-        min-length = 5;
-        on-click = "swaymsg 'input * xkb_switch_layout next'";
-        tooltip = false;
+      "custom/language" = {
+        exec = "bash ${builtins.toString ./lang-status.sh}";
+        interval = 1;
+        return-type = "json";
+        format = " {} ";
+        on-click = "fcitx5-remote -t";
       };
 
       "memory" = {
@@ -179,11 +158,6 @@
           ""
         ];
         tooltip = false;
-      };
-
-      "tray" = {
-        icon-size = 18;
-        #"spacing" = 10
       };
 
       "custom/arrow1" = {
