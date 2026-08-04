@@ -37,6 +37,7 @@
     sidequest
     ardour
     ripgrep
+    yazi
     (openttd-jgrpp.overrideAttrs (oldAttrs: {
       src = fetchFromGitHub {
         owner = "JGRennison";

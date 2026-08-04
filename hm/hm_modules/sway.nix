@@ -27,6 +27,35 @@
       
       window = {
         titlebar = false;
+        commands = [
+          {
+            criteria = {
+              app_id = "scratchpad";
+            };
+            command = "floating enable";
+          }
+
+          {
+            criteria = {
+              app_id = "scratchpad";
+            };
+            command = "resize set width 1920 px height 1080 px";
+          }
+
+          {
+            criteria = {
+              app_id = "scratchpad";
+            };
+            command = "move position center";
+          }
+
+          {
+            criteria = {
+              app_id = "scratchpad";
+            };
+            command = "move scratchpad";
+          }
+        ];
       };
 
       output = {
@@ -43,17 +72,23 @@
       keybindings = lib.mkOptionDefault {
         # Full-screen screenshot, saved and copied to clipboard
         "${modifier}+Shift+f" = ''exec mkdir -p ~/Pictures/Screenshots && grim - | tee ~/Pictures/Screenshots/$(date +'%Y-%m-%d-%H%M%S').png | wl-copy'';
+        "${modifier}+l" = "exec swaylock";
         # Region-select screenshot, saved and copied to clipboard
         "${modifier}+Shift+s" = ''exec sh -c 'mkdir -p ~/Pictures/Screenshots && geom="$(slurp)" && grim -g "$geom" - | tee ~/Pictures/Screenshots/$(date +"%Y-%m-%d-%H%M%S").png | wl-copy' '';
         # Region-select, straight into swappy for annotation before saving
         "${modifier}+Shift+a" = ''exec grim -g "$(slurp)" - | swappy -f -'';
         "${modifier}+v" = ''exec sh -c 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy' '';
+        "${modifier}+e" = "exec kitty -e yazi";
         "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
         "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
         "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-};
+        "${modifier}+Shift+grave" = "exec ${builtins.toString ./scratchpad-toggle.sh}";
+      };
+      floating.modifier = "Mod4";
+      focus.followMouse = false;
     };
+
   };
 
   programs.swaylock = {
