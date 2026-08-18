@@ -35,20 +35,20 @@
             command = "floating enable";
           }
 
-          {
-            criteria = {
-              app_id = "scratchpad";
-            };
-            command = "resize set width 1920 px height 1080 px";
-          }
-
-          {
-            criteria = {
-              app_id = "scratchpad";
-            };
-            command = "move position center";
-          }
-
+#          {
+#            criteria = {
+#              app_id = "scratchpad";
+#            };
+#            command = "resize set width 1920 px height 1080 px";
+#          }
+#
+#          {
+#            criteria = {
+#              app_id = "scratchpad";
+#            };
+#            command = "move position center";
+#          }
+#
           {
             criteria = {
               app_id = "scratchpad";
