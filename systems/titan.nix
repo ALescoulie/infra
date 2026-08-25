@@ -10,6 +10,11 @@
     ./sys_modules/devtool-utils.nix
   ];
 
+  users.users.alia = {
+    name = "alia";
+    home = "/Users/alia";
+  };
+
   # Enable flakes
   nix.extraOptions = ''
     experimental-features = nix-command flakes

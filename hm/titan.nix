@@ -9,7 +9,7 @@
   };
 
   home.username = "alia";
-  home.homeDirectory = /Users/alia;
+  home.homeDirectory = "/Users/alia";
   home.stateVersion = "26.05";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
