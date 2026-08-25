@@ -47,7 +47,17 @@
       ];
     };
 
-    darwinPackages = self.darwinConfigurations.Voyager.pkgs;
+    
+    darwinConfigurations."Titan" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [
+        lix-module.darwinModules.lixFromNixpkgs
+        home-manager.darwinModules.home-manager
+        ./systems/titan.nix 
+      ];
+    };
+
+    darwinPackages = self.darwinConfigurations.Titan.pkgs;
 
     packages.x86_64-linux.installer-iso = self.nixosConfigurations.installer-iso.config.system.build.isoImage;
 
@@ -68,6 +78,11 @@
     homeConfigurations."alia@MacBookPro.lan" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.aarch64-darwin;
       modules = [ ./hm/voyager.nix ]; 
+    };
+    
+    homeConfigurations."alia@Titan" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      modules = [ ./hm/titan.nix ]; 
     };
 
     homeConfigurations."alia@Stargazer" = home-manager.lib.homeManagerConfiguration {
