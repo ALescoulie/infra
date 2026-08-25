@@ -92,4 +92,53 @@ return {
         'nvim-lua/plenary.nvim',
       }
     },
+    {
+      {'akinsho/toggleterm.nvim', version = "*", config = true}
+    },
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      main = "ibl",
+      ---@module "ibl"
+      ---@type ibl.config
+      opts = {},
+    },
+    {
+      "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",
+    },
+    {
+      "folke/which-key.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      },
+      keys = {
+        {
+          "<leader>?",
+          function()
+            require("which-key").show({ global = false })
+          end,
+          desc = "Buffer Local Keymaps (which-key)",
+        },
+      },
+    },
+    {
+      'windwp/nvim-autopairs',
+      event = "InsertEnter",
+      config = true
+      -- use opts = {} for passing setup options
+      -- this is equivalent to setup({}) function
+    },
+    {
+      "j-hui/fidget.nvim",
+      opts = {
+        -- options
+      },
+    },
+    {
+      "nosduco/remote-sshfs.nvim",
+      dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+      opts = {},
+    },
   }

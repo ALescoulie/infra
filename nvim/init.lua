@@ -177,6 +177,8 @@ require('neotest').setup {
 
 vim.opt.signcolumn = 'yes'
 
+require("fidget").setup{}
+
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
 local lspconfig_defaults = require('lspconfig').util.default_config
@@ -224,6 +226,13 @@ vim.lsp.config('rust_analyzer', {
       }
     }
   }
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+  pattern = "*.hs",
+  callback = function()
+    vim.b.matchup_matchparen_enabled = 0
+  end,
 })
 
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -301,11 +310,214 @@ cmp.setup({
   },
 })
 
+local Terminal = require("toggleterm.terminal").Terminal
+
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  hidden = true,
+  direction = "float",
+  float_opts = {
+    border = "rounded",
+  },
+})
+
+vim.keymap.set("n", "<leader>gg", function()
+  lazygit:toggle()
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Toggle Lazygit",
+})
 
 vim.api.nvim_exec([[
 runtime init.nvim
     ]], false
 )
+
+require("toggleterm").setup{
+  open_mapping = [[<c-\>]],
+}
+
+
+local highlight = {
+    "RainbowRed",
+    "RainbowOrange",
+    "RainbowYellow",
+    "RainbowGreen",
+    "RainbowBlue",
+    "RainbowViolet",
+}
+
+local hooks = require "ibl.hooks"
+-- create the highlight groups in the highlight setup hook, so they are reset
+-- every time the colorscheme changes
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+end)
+
+vim.g.rainbow_delimiters = { highlight = highlight }
+
+hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+
+require("ibl").setup { indent = { highlight = highlight } }
+
+local dap = require("dap")
+local dapui = require("dapui")
+
+dapui.setup()
+
+dap.set_log_level("TRACE")
+
+-- Open/close DAP UI automatically
+dap.listeners.before.attach.dapui_config = function()
+  dapui.open()
+end
+
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
+end
+
+dap.listeners.before.event_terminated.dapui_config = function()
+  dapui.close()
+end
+
+dap.listeners.before.event_exited.dapui_config = function()
+  dapui.close()
+end
+
+vim.keymap.set("n", "<F5>", dap.continue)
+vim.keymap.set("n", "<F10>", dap.step_over)
+vim.keymap.set("n", "<F11>", dap.step_into)
+vim.keymap.set("n", "<F12>", dap.step_out)
+
+vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint)
+vim.keymap.set("n", "<Leader>B", function()
+  dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end)
+
+vim.keymap.set("n", "<Leader>du", dapui.toggle)
+
+-----------------------------------------------------------
+-- C / C++ / Rust
+-----------------------------------------------------------
+
+dap.adapters.lldb = {
+  type = "executable",
+  command = "lldb-dap",
+}
+
+local lldb_config = {
+  {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+
+    program = function()
+      return vim.fn.input(
+        "Path to executable: ",
+        vim.fn.getcwd() .. "/",
+        "file"
+      )
+    end,
+
+    cwd = "${workspaceFolder}",
+    stopOnEntry = true,
+  },
+}
+
+dap.configurations.c = lldb_config
+dap.configurations.cpp = lldb_config
+dap.configurations.rust = lldb_config
+
+
+-----------------------------------------------------------
+-- Python
+-----------------------------------------------------------
+
+dap.adapters.python = {
+  type = "executable",
+  command = "python",
+  args = { "-m", "debugpy.adapter" },
+}
+
+dap.configurations.python = {
+  {
+    name = "Launch file",
+    type = "python",
+    request = "launch",
+
+    program = "${file}",
+
+    pythonPath = function()
+      return vim.fn.exepath("python")
+    end,
+  },
+}
+
+
+-----------------------------------------------------------
+-- JavaScript / TypeScript
+-----------------------------------------------------------
+
+dap.adapters["pwa-node"] = {
+  type = "server",
+  host = "localhost",
+  port = "${port}",
+
+  executable = {
+    command = "js-debug-adapter",
+    args = {
+      "${port}",
+    },
+  },
+}
+
+local js_config = {
+  {
+    name = "Launch file",
+    type = "pwa-node",
+    request = "launch",
+
+    program = "${file}",
+    cwd = "${workspaceFolder}",
+  },
+}
+
+dap.configurations.javascript = js_config
+dap.configurations.typescript = js_config
+dap.configurations.javascriptreact = js_config
+dap.configurations.typescriptreact = js_config
+
+
+-----------------------------------------------------------
+-- OCaml
+-----------------------------------------------------------
+
+dap.adapters.ocaml = {
+  type = "executable",
+  command = "ocamlearlybird",
+}
+
+dap.configurations.ocaml = {
+  {
+    name = "Launch OCaml program",
+    type = "ocaml",
+    request = "launch",
+
+    program = function()
+      return vim.fn.input(
+        "Path to executable: ",
+        vim.fn.getcwd() .. "/",
+        "file"
+      )
+    end,
+  },
+}
 
 -- require("image").setup({
 --   backend = "kitty",

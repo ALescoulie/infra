@@ -10,7 +10,7 @@
 
   home.username = "alia";
   home.homeDirectory = /Users/alia;
-  home.stateVersion = "25.05";
+  home.stateVersion = "26.05";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
@@ -20,21 +20,18 @@
     ./hm_modules/zsh/zsh.nix
     ./hm_modules/tmux.nix
     ./hm_modules/kitty.nix
+    ./hm_modules/devtools.nix
   ];
 
   home.packages = with pkgs; [
+    neovim
     poetry
     cargo
-    neofetch
+    fastfetch
     tmux
     iterm2
     ripgrep
   ];
 
   programs.zsh.enable = true;
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-    viAlias = true;
-  };
 }
