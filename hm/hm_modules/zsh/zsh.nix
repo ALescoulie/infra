@@ -29,6 +29,9 @@
 
     shellAliases = {
       neofetch = "fastfetch";
+      vi = "nvim";
+      vim = "nvim";
+      nix-darwin = "nix run nix-darwin";
     };
 
     plugins = [{

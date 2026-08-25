@@ -8,12 +8,15 @@
   imports = 
   [
     ./sys_modules/devtool-utils.nix
+    ./sys_modules/aerospace.nix
   ];
 
   users.users.alia = {
     name = "alia";
     home = "/Users/alia";
   };
+
+  system.primaryUser = "alia";
 
   # Enable flakes
   nix.extraOptions = ''
@@ -36,6 +39,10 @@
     sl
     htop
   ];
+
+  homebrew.enable = true;
+
+  homebrew.casks = ["vorssaint"];
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
