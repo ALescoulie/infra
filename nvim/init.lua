@@ -519,6 +519,81 @@ dap.configurations.ocaml = {
   },
 }
 
+-- Notes Taking
+
+-----------------------------------------------------------
+-- Obsidian (obsidian.nvim)
+-----------------------------------------------------------
+ 
+require("obsidian").setup({
+  legacy_commands = false, -- use the new :Obsidian subcommands instead of :ObsidianX
+  ui = { enable = false },
+ 
+  workspaces = {
+    {
+      name = "personal",
+      -- CHANGE THIS to the actual path of your Obsidian vault
+      path = "~/vaults/",
+    },
+  },
+ 
+  -- optional, completion of wiki links, tags, etc. via nvim-cmp / blink.cmp
+  completion = {
+    nvim_cmp = true,
+    min_chars = 2,
+  },
+ 
+  -- where daily notes go
+  daily_notes = {
+    folder = "dailies",
+    date_format = "%Y-%m-%d",
+    template = nil,
+  },
+})
+
+require('render-markdown').setup({...}) 
+
+local obs_opts = { noremap = true, silent = true }
+ 
+-- Open the current vault in the Obsidian app
+vim.keymap.set("n", "<leader>oo", "<cmd>Obsidian open<cr>", obs_opts)
+-- Create a new note
+vim.keymap.set("n", "<leader>on", "<cmd>Obsidian new<cr>", obs_opts)
+-- Fuzzy-find and open a note by title
+vim.keymap.set("n", "<leader>oq", "<cmd>Obsidian quick_switch<cr>", obs_opts)
+-- Full-text search across the vault
+vim.keymap.set("n", "<leader>os", "<cmd>Obsidian search<cr>", obs_opts)
+-- Show backlinks to the note under the cursor
+vim.keymap.set("n", "<leader>ob", "<cmd>Obsidian backlinks<cr>", obs_opts)
+-- List/search tags
+vim.keymap.set("n", "<leader>ot", "<cmd>Obsidian tags<cr>", obs_opts)
+-- Insert a template into the current note
+vim.keymap.set("n", "<leader>oT", "<cmd>Obsidian template<cr>", obs_opts)
+-- Open/create today's daily note
+vim.keymap.set("n", "<leader>od", "<cmd>Obsidian today<cr>", obs_opts)
+-- Open/create yesterday's daily note
+vim.keymap.set("n", "<leader>oy", "<cmd>Obsidian yesterday<cr>", obs_opts)
+-- Rename the current note (updates links across the vault)
+vim.keymap.set("n", "<leader>or", "<cmd>Obsidian rename<cr>", obs_opts)
+-- Toggle a markdown checkbox on the current line
+vim.keymap.set("n", "<leader>oc", "<cmd>Obsidian toggle_checkbox<cr>", obs_opts)
+-- Paste an image from the clipboard into the note
+vim.keymap.set("n", "<leader>op", "<cmd>Obsidian paste_img<cr>", obs_opts)
+-- Follow the link under the cursor
+vim.keymap.set("n", "gf", "<cmd>Obsidian follow_link<cr>", obs_opts)
+-- Turn the visually selected text into a [[link]]
+vim.keymap.set("v", "<leader>ol", "<cmd>Obsidian link<cr>", obs_opts)
+-- Turn the visually selected text into a link to a brand-new note
+vim.keymap.set("v", "<leader>oL", "<cmd>Obsidian link_new<cr>", obs_opts)
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = "en_us"
+  end,
+})
+
 -- require("image").setup({
 --   backend = "kitty",
 --   integrations = {

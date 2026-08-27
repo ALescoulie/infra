@@ -28,7 +28,20 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  security.pam.services.sudo_local.touchIdAuth = true;
+
+  system.defaults = {
+    dock.autohide = true;
+    dock.show-recents = false;
+    finder.AppleShowAllExtensions = true;
+    finder.FXPreferredViewStyle = "Nlsv"; # list view
+    NSGlobalDomain.KeyRepeat = 2;
+    NSGlobalDomain.InitialKeyRepeat = 15;
+    NSGlobalDomain."com.apple.mouse.tapBehavior" = 1; # tap to click
+  };
   
+
   environment.systemPackages = with pkgs; [
     neovim
     tmux
@@ -48,5 +61,15 @@
   home-manager.useUserPackages = true;
 
   home-manager.users.alia = import ../hm/titan.nix;
+
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 0; Hour = 3; Minute = 0; };
+    options = "--delete-older-than 30d";
+  };
+  
+  nix.optimise.automatic = true;
+
+  fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
 }
  

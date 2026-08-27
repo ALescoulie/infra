@@ -7,6 +7,8 @@
     vscode-js-debug
     ocamlPackages.earlybird
     lazygit
+    obsidian
+    sox
   ];
 }
 

@@ -4,9 +4,9 @@
   services.aerospace = {
     enable = true;
     settings = {
+      config-version = 2;
       after-startup-command = [ ];
-      start-at-login = true;
-      auto-reload-config = false;
+      start-at-login = false;
 
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;

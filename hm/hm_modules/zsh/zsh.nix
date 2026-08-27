@@ -32,6 +32,7 @@
       vi = "nvim";
       vim = "nvim";
       nix-darwin = "nix run nix-darwin";
+      switch = "sudo nix run nix-darwin -- switch --flake ~/infra/flake.nix";
     };
 
     plugins = [{
