@@ -20,6 +20,7 @@
     ./hm_modules/tmux.nix
     ./hm_modules/kitty.nix
     ./hm_modules/devtools.nix
+    ./hm_modules/syncthing.nix
   ];
 
   home.packages = with pkgs; [
