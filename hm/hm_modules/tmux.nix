@@ -4,7 +4,7 @@
   programs.tmux = {
     enable = true;
     clock24 = true;
-    shortcut = "a";
+    shortcut = "Space";
     baseIndex = 1;
 
     plugins = with pkgs; [

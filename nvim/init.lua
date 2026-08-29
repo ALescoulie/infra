@@ -1,4 +1,5 @@
 -- default config
+vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
 
 require("config.lazy")
 
@@ -118,37 +119,67 @@ telescope.setup {
 telescope.load_extension('manix')
 
 require("lazy").setup({{
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    branch = 'main',
-    config = function ()
-        local configs = require("nvim-treesitter.configs")
+  "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
+  branch = 'main',
+  config = function ()
+    local ts_langs = {
+      "asm", "c", "lua", "vim", "vimdoc", "rust", "haskell",
+      "python", "nix", "javascript", "typescript", "tsx",
+      "html", "css", "idris", "jinja", "markdown", "markdown_inline",
+      "latex", "yaml", "html", "css", "c++"
+    }
 
-        configs.setup({
-            ensure_installed = {
-                "asm",
-                "c",
-                "lua",
-                "vim",
-                "vimdoc",
-                "rust",
-                "haskell",
-                "python",
-                "nix",
-                "javascript",
-                "typescript",
-                "tsx",
-                "html",
-                "css",
-                "idris",
-                "jinja",
-            },
-            sync_install = false,
-            highlight = { enable = true },
-            indent = { enable = true },
-        })
-    end
+    -- new main-branch API: replaces configs.setup({ ensure_installed = ... })
+    require("nvim-treesitter").install(ts_langs)
+
+    -- new main-branch API: highlighting is no longer a config flag,
+    -- it has to be started per-buffer via vim.treesitter.start()
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = ts_langs,
+      callback = function()
+        vim.treesitter.start()
+        vim.wo.foldmethod = "expr"
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      end,
+    })
+  end
 }})
+
+--require("lazy").setup({{
+--    "nvim-treesitter/nvim-treesitter",
+--    build = ":TSUpdate",
+--    branch = 'main',
+--    config = function ()
+--        local configs = require("nvim-treesitter.configs")
+--
+--        configs.setup({
+--            ensure_installed = {
+--                "asm",
+--                "c",
+--                "lua",
+--                "vim",
+--                "vimdoc",
+--                "rust",
+--                "haskell",
+--                "python",
+--                "nix",
+--                "javascript",
+--                "typescript",
+--                "tsx",
+--                "html",
+--                "css",
+--                "idris",
+--                "jinja",
+--                "markdown",
+--                "markdown_inline",
+--            },
+--            sync_install = false,
+--            highlight = { enable = true },
+--            indent = { enable = true },
+--        })
+--    end
+--}})
 
 local ht = require('haskell-tools')
 local bufnr = vim.api.nvim_get_current_buf()
@@ -300,7 +331,7 @@ cmp.setup({
         nvim_lsp = 'λ',
         luasnip = '⋗',
         buffer = 'Ω',
-        path = '🖫',
+        path = '',
         nvim_lua = 'Π',
       }
 
@@ -551,7 +582,6 @@ require("obsidian").setup({
   },
 })
 
-require('render-markdown').setup({...}) 
 
 local obs_opts = { noremap = true, silent = true }
  

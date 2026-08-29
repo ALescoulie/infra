@@ -29,6 +29,7 @@
     tmux
     ripgrep
     pngpaste
+    yazi
   ];
 
   programs.zsh.enable = true;

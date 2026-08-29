@@ -17,5 +17,8 @@
     enable = true;
   };
 
+  enviornment.systemPackages = with pkgs; = [
+    mosh
+  ];
 }
 

@@ -51,11 +51,19 @@
     fastfetch
     sl
     htop
+    mosh
   ];
 
   homebrew.enable = true;
 
   homebrew.casks = ["vorssaint"];
+  
+  programs.ssh.knownHosts = {
+    discovery = {
+      hostNames = ["discovery" "100.89.122.92"];
+      publicKey = "ssh-ed25519 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOlSo9UFS9xMWayJ3sZ/lCLt7rRcWG+dy506hiF7Aceu"; 
+    };
+  };
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
