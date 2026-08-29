@@ -624,6 +624,24 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- clipboard
+
+-- Only enable OSC52 when actually connecting over SSH,
+-- so local usage on the desktop still uses the normal system clipboard.
+if os.getenv("SSH_TTY") then
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    },
+  }
+end
+
 -- require("image").setup({
 --   backend = "kitty",
 --   integrations = {
