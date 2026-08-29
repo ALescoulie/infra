@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }:
-
 {
   programs.zsh = {
     enable = true;
@@ -31,8 +30,12 @@
       neofetch = "fastfetch";
       vi = "nvim";
       vim = "nvim";
+    } // lib.optionalAttrs pkgs.stdenv.isDarwin {
       nix-darwin = "nix run nix-darwin";
       switch = "sudo nix run nix-darwin -- switch --flake ~/infra/flake.nix";
+      disco = "mosh discovery -- tmux new-session -A -s dev";
+    } // lib.optionalAttrs pkgs.stdenv.isLinux {
+      switch = "sudo nixos-rebuild switch --flake ~/infra/flake.nix";
     };
 
     plugins = [{
