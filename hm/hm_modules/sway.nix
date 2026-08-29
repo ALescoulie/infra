@@ -19,7 +19,7 @@
       startup = [
         # Launch Firefox on start
         {command = "firefox";}
-        {command = "waybar";}
+        #{command = "waybar";}
         {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
         {command = "wl-paste --type text --watch cliphist store";}
         {command = "wl-paste --type image --watch cliphist store";}
@@ -63,7 +63,7 @@
           pos = "3840 0";
           bg = (builtins.toString ./wallpapers/juno-orange.jpg) + " fill";
         };
-        "HDMI-A-1" = {
+        "DP-2" = {
           pos = "0 0";
           bg = (builtins.toString ./wallpapers/juno-blue.jpg) + " fill";
         };
