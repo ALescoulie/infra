@@ -17,7 +17,7 @@
     enable = true;
   };
 
-  enviornment.systemPackages = with pkgs; = [
+  environment.systemPackages = with pkgs; [
     mosh
   ];
 }
