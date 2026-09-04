@@ -13,7 +13,11 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBNqvkQOVN6iCz27NLGn+LtxeJ82tMvV/Hm06QuHGiES alia@MacBook-Air.lan"
   ];
 
-  enviornment.systemPackages = with pkgs; = [
+  services.tailscale = {
+    enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
     mosh
   ];
 }
