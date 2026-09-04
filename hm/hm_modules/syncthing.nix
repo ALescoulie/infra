@@ -17,6 +17,10 @@
           path = "~/Books";
           devices = [ "titan" "discovery" ];
         };
+        obs-vault = {
+          path = "~/vaults";
+          devices = ["titan" "discovery"];
+        };
       };
     };
   };
