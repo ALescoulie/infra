@@ -28,8 +28,6 @@
     haskellPackages.haskell-dap
     haskellPackages.haskell-debug-adapter
     ghc
-    luajitPackages.luarocks-nix
-    lua
     tree-sitter
     ripgrep
     manix

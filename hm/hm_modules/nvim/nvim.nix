@@ -2,17 +2,17 @@
 
 {
   programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    plugins = with pkgs.vimPlugins; [
-      nvim-treesitter
-    ];
-
+      enable = true;
+      extraLuaPackages = ps: [ ps.magick ];
+      extraPackages = [
+        pkgs.imagemagick
+        pkgs.ghostscript # Required only when rendering PDF files
+      ];
+      # ... other config
+  };
+ 
   home.packages = with pkgs; [ 
-    nodejs
-    nodePackages.npm
+    nodejs-slim
     fortran-language-server
     haskellPackages.fast-tags
     haskellPackages.haskell-language-server
@@ -21,8 +21,6 @@
     haskellPackages.haskell-dap
     haskellPackages.haskell-debug-adapter
     ghc
-    luajitPackages.luarocks-nix
-    lua
   ];
 }
 

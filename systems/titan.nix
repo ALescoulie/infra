@@ -52,11 +52,20 @@
     sl
     htop
     mosh
+    lua5_1
   ];
 
-  homebrew.enable = true;
-
-  homebrew.casks = ["vorssaint"];
+  homebrew = {
+    enable = true;
+    casks = ["vorssaint"];
+    brews = [
+      "luarocks"
+      "utftex"
+      "imagemagick"
+      "ghostscript"
+      "pkg-config"
+    ];
+  };
   
   programs.ssh.knownHosts = {
     discovery = {

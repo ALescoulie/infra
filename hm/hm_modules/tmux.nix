@@ -20,6 +20,9 @@
       set -g default-terminal "tmux-256color"
       set -ga terminal-overrides ",*256col*:Tc"
 
+      # Makes sure images work
+      set -gq allow-passthrough on
+
       set -g @resurrect-strategy-vim 'session'
       set -g @resurrect-strategy-nvim 'session'
       set -g @resurrect-capture-pane-contents 'on'

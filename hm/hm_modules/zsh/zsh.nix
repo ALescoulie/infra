@@ -21,6 +21,12 @@
       ];
     };
 
+    initExtra = ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      export DYLD_LIBRARY_PATH="/opt/homebrew/opt/imagemagick/lib:$DYLD_LIBRARY_PATH"
+    '';
+
     initContent = ''
       # Powerlevel10k configuration
       source ${./p10k-config/p10k.zsh}
