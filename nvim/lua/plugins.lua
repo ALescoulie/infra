@@ -172,6 +172,18 @@ return {
             download_remote_images = true,
             only_render_image_at_cursor = false,
             filetypes = { "markdown" }, -- your obsidian notes are markdown filetype
+            resolve_image_path = function(document_path, image_path, fallback)
+              -- try normal relative/absolute resolution first
+              local default_path = fallback(document_path, image_path)
+              if vim.uv.fs_stat(default_path) then
+                return default_path
+              end
+
+              -- fall back to the vault's attachment folder
+              local vault_root = vim.fn.expand("~/vaults") -- matches your obsidian.nvim workspace path
+              local attachment_folder = "Attachments" -- CHANGE to match your actual Obsidian setting
+              return vault_root .. "/" .. attachment_folder .. "/" .. image_path
+            end,
           },
         },
         max_width = 100,
