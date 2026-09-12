@@ -18,7 +18,6 @@
     ./hm_modules/kitty.nix
     ./hm_modules/fuzzel.nix
     ./hm_modules/syncthing.nix
-    ./hm_modules/nvim/nvim.nix
   ];
 
   home.packages = with pkgs; [
