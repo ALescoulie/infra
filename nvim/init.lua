@@ -76,6 +76,8 @@ require("catppuccin").setup({
     },
 })
 
+local palette = require("catppuccin.palettes").get_palette("mocha")
+
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -146,40 +148,6 @@ require("lazy").setup({{
   end
 }})
 
---require("lazy").setup({{
---    "nvim-treesitter/nvim-treesitter",
---    build = ":TSUpdate",
---    branch = 'main',
---    config = function ()
---        local configs = require("nvim-treesitter.configs")
---
---        configs.setup({
---            ensure_installed = {
---                "asm",
---                "c",
---                "lua",
---                "vim",
---                "vimdoc",
---                "rust",
---                "haskell",
---                "python",
---                "nix",
---                "javascript",
---                "typescript",
---                "tsx",
---                "html",
---                "css",
---                "idris",
---                "jinja",
---                "markdown",
---                "markdown_inline",
---            },
---            sync_install = false,
---            highlight = { enable = true },
---            indent = { enable = true },
---        })
---    end
---}})
 
 local ht = require('haskell-tools')
 local bufnr = vim.api.nvim_get_current_buf()
@@ -383,19 +351,28 @@ local hooks = require "ibl.hooks"
 -- create the highlight groups in the highlight setup hook, so they are reset
 -- every time the colorscheme changes
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+    vim.api.nvim_set_hl(0, "RainbowRed", { fg = palette.red })
+    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = palette.peach })
+    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = palette.yellow })
+    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = palette.green })
+    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = palette.blue })
+    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = palette.mauve })
 end)
 
 vim.g.rainbow_delimiters = { highlight = highlight }
 
 hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
-require("ibl").setup { indent = { highlight = highlight } }
+require("ibl").setup({
+  indent = {
+    highlight = highlight
+  },
+  exclude = {
+    filetypes = {
+      "dashboard",
+    },
+  },
+})
 
 local dap = require("dap")
 local dapui = require("dapui")
@@ -615,6 +592,10 @@ vim.keymap.set("n", "gf", "<cmd>Obsidian follow_link<cr>", obs_opts)
 vim.keymap.set("v", "<leader>ol", "<cmd>Obsidian link<cr>", obs_opts)
 -- Turn the visually selected text into a link to a brand-new note
 vim.keymap.set("v", "<leader>oL", "<cmd>Obsidian link_new<cr>", obs_opts)
+vim.keymap.set("n", "<leader>oY", function()
+  vim.cmd("vsplit")
+  vim.cmd("Obsidian yesterday")
+end, { desc = "Open yesterday's daily note (vsplit)" })
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
@@ -649,3 +630,210 @@ package.path = package.path .. ";" .. luarocks_path .. ";" .. luarocks_path:gsub
 package.cpath = package.cpath .. ";" .. luarocks_cpath
 
 require("image").enable() -- enable the plugin
+
+local is_narrow = vim.o.columns < 120
+local full_shortcuts = {
+  {
+    icon = "",
+    desc = " New File",
+    group = "DashboardUpdate",
+    action = "enew",
+    key = "u",
+  },
+  {
+    icon = "󰪶",
+    desc = " Search Files",
+    group = "DashboardFiles",
+    action = "Telescope find_files",
+    key = "f",
+  },
+  {
+    icon = "",
+    desc = " Sessions",
+    group = "DashboardSessions",
+    action = "Telescope possession list",
+    key = "s",
+  },
+  {
+    icon = "",
+    desc = " New Terminal",
+    group = "DashboardTerm",
+    action = "term",
+    key = "t",
+  },
+  {
+    icon = "󰺿",
+    desc = " Daily Note",
+    group = "DashboardNotes",
+    action = "Obsidian today",
+    key = "d",
+  },     
+  {
+    icon = "󱄅",
+    desc = " Infra",
+    group = "DashboardInfra",
+    action = function()
+      local infra_dir = vim.fn.expand("~/infra")
+      vim.cmd("cd " .. infra_dir)
+      -- optional: open a file finder right after switching
+      require("telescope.builtin").find_files({ cwd = infra_dir })
+    end,
+    key = "i",
+  },
+}
+
+local compact_shortcuts = {
+  {
+    icon = "",
+    desc = "",
+    group = "DashboardUpdate",
+    action = "enew",
+    key = "n",
+  },
+  {
+    icon = "󰪶",
+    desc = "",
+    group = "DashboardFiles",
+    action = "Telescope find_files",
+    key = "f",
+  },
+  {
+    icon = "",
+    desc = "",
+    group = "DashboardSessions",
+    action = "Telescope possession list",
+    key = "s",
+  },
+  {
+    icon = "",
+    desc = "",
+    group = "DashboardTerm",
+    action = "term",
+    key = "t",
+  },
+  {
+    icon = "󰺿",
+    desc = "",
+    group = "DashboardNotes",
+    action = "Obsidian today",
+    key = "d",
+  },     
+  {
+    icon = "󱄅",
+    desc = "",
+    group = "DashboardInfra",
+    action = function()
+      local infra_dir = vim.fn.expand("~/infra")
+      vim.cmd("cd " .. infra_dir)
+      -- optional: open a file finder right after switching
+      require("telescope.builtin").find_files({ cwd = infra_dir })
+    end,
+    key = "i",
+  },
+}
+
+require("dashboard").setup({
+  theme = "hyper",
+  config = {
+    header = {
+      "██████   █████                                ███                  ",
+      "░░██████ ░░███                                ░░░                  ",
+      " ░███░███ ░███   ██████   ██████  █████ █████ ████  █████████████  ",
+      " ░███░░███░███  ███░░███ ███░░███░░███ ░░███ ░░███ ░░███░░███░░███ ",
+      " ░███ ░░██████ ░███████ ░███ ░███ ░███  ░███  ░███  ░███ ░███ ░███ ",
+      " ░███  ░░█████ ░███░░░  ░███ ░███ ░░███ ███   ░███  ░███ ░███ ░███ ",
+      " █████  ░░█████░░██████ ░░██████   ░░█████    █████ █████░███ █████",
+      "░░░░░    ░░░░░  ░░░░░░   ░░░░░░     ░░░░░    ░░░░░ ░░░░░ ░░░ ░░░░░ ",
+      "",
+    },
+    shortcut = is_narrow and compact_shortcuts or full_shortcuts,
+    project = { enable = false },
+    footer = {
+      "",
+      "Hack the Planet!",
+    },
+  },
+})
+
+vim.api.nvim_set_hl(0, "DashboardUpdate", { fg = palette.red })
+vim.api.nvim_set_hl(0, "DashboardFiles", {fg = palette.peach })
+vim.api.nvim_set_hl(0, "DashboardSessions", {fg = palette.yellow })
+vim.api.nvim_set_hl(0, "DashboardNotes", {fg = palette.green })
+vim.api.nvim_set_hl(0, "DashboardTerm", {fg = palette.blue })
+vim.api.nvim_set_hl(0, "DashboardInfra", {fg = palette.mauve })
+
+vim.api.nvim_set_hl(0, "DashboardHeader1", { fg = palette.red })
+vim.api.nvim_set_hl(0, "DashboardHeader2", { fg = palette.red })
+vim.api.nvim_set_hl(0, "DashboardHeader3", { fg = palette.peach })
+vim.api.nvim_set_hl(0, "DashboardHeader4", { fg = palette.yellow })
+vim.api.nvim_set_hl(0, "DashboardHeader5", { fg = palette.green })
+vim.api.nvim_set_hl(0, "DashboardHeader6", { fg = palette.blue })
+vim.api.nvim_set_hl(0, "DashboardHeader7", { fg = palette.mauve })
+vim.api.nvim_set_hl(0, "DashboardHeader8", { fg = palette.mauve })
+
+local header_fragments = {
+  "██████   █████",
+  "░░██████ ░░███",
+  "░███░███ ░███",
+  "░███░░███░███",
+  "░███ ░░██████",
+  "░███  ░░█████",
+  "█████  ░░█████",
+  "░░░░░    ░░░░░",
+}
+
+local header_hls = {
+  "DashboardHeader1", "DashboardHeader2", "DashboardHeader3", "DashboardHeader4",
+  "DashboardHeader5", "DashboardHeader6", "DashboardHeader7", "DashboardHeader8",
+}
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "DashboardLoaded",
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+    local ns = vim.api.nvim_create_namespace("dashboard_header_gradient")
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+
+    -- find where the header actually starts in this buffer
+    local start_line = nil
+    for i, l in ipairs(lines) do
+      if l:find(header_fragments[1], 1, true) then
+        start_line = i - 1 -- convert to 0-indexed
+        break
+      end
+    end
+
+    if not start_line then
+      vim.notify("dashboard header: anchor line not found", vim.log.levels.WARN)
+      return
+    end
+
+    for offset, hl in ipairs(header_hls) do
+      local buf_line = start_line + offset - 1
+      local text = lines[buf_line + 1]
+      if text then
+        vim.api.nvim_buf_set_extmark(buf, ns, buf_line, 0, {
+          end_col = #text,
+          hl_group = hl,
+        })
+      end
+    end
+  end,
+})
+
+vim.keymap.set("n", "<leader>db", "<cmd>Dashboard<cr>", { desc = "Open dashboard" })
+
+require('possession').setup({
+  commands = {
+    save = 'SSave',
+    load = 'SLoad',
+    delete = 'SDelete',
+    list = 'SList',
+  },
+})
+
+require('telescope').load_extension('possession')
+
+vim.keymap.set("n", "<leader>sf", "<cmd>Telescope possession list<cr>")
+vim.keymap.set("n", "<leader>ss", "<cmd>SSave<cr>")
+
